@@ -1,0 +1,6 @@
+Textures/Back_Tex.png filter=lfs diff=lfs merge=lfs -text
+Textures/Down_Tex.png filter=lfs diff=lfs merge=lfs -text
+Textures/Front_Tex.png filter=lfs diff=lfs merge=lfs -text
+Textures/Left_Tex.png filter=lfs diff=lfs merge=lfs -text
+Textures/Right_Tex.png filter=lfs diff=lfs merge=lfs -text
+Textures/Up_Tex.png filter=lfs diff=lfs merge=lfs -text
