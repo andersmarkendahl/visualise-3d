@@ -7,7 +7,6 @@ public class DataPointEffects : MonoBehaviour
     private Vector3 _positionNorm;
     private Renderer _renderer;
     private Color _color;
-    private float _scale = 10.0f;
 
     void Awake()
     {
