@@ -15,9 +15,32 @@ public class CameraControl : MonoBehaviour
         gameObject.transform.rotation = Quaternion.Euler(_cameraPositions[index].Rotation);
         _currentIndex = index;
     }
-    public void UserInput()
+    public void UserInput( Control value )
     {
-
+        switch (_currentIndex)
+        {
+        case 0:
+            if (value == Control.UP)
+                SetCameraPosition(2);
+            else if (value == Control.RIGHT)
+                SetCameraPosition(1);
+            break;
+        case 1:
+            if (value == Control.LEFT)
+                SetCameraPosition(0);
+            else if (value == Control.UP)
+                SetCameraPosition(2);
+            break;
+        case 2:
+            if (value == Control.DOWN)
+                SetCameraPosition(0);
+            else if (value == Control.RIGHT)
+                SetCameraPosition(1);
+            break;
+        default:
+            Debug.Log("Unknown current index for camera position" + _currentIndex);
+            break;
+        }
     }
     void Awake()
     {
