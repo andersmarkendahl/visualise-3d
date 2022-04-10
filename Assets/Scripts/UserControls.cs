@@ -22,16 +22,16 @@ public class UserControls : MonoBehaviour
         _controls.Player.Right.performed += ctx => right = true;
 
     }
-    void Update()
+    void FixedUpdate()
     {
         if(up) {
-            Debug.Log("Got Up");
+            Debug.Log("Got Up 1");
         } else if(down) {
-            Debug.Log("Got Down");
+            Debug.Log("Got Down 2");
         } else if(left) {
-            Debug.Log("Got Left");
+            Debug.Log("Got Left 3");
         } else if(right) {
-            Debug.Log("Got Right");
+            Debug.Log("Got Right 4");
         }
 
         up = false;
