@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class CameraControl : MonoBehaviour
 {
+    public static CameraControl Instance;
+    public float scale = 10.0f;
+
     private CameraPosition[] _cameraPositions;
     private int _currentIndex = 0;
-    public float scale = 10.0f;
-    public CameraControl instance;
 
     private void SetCameraPosition(int index)
     {
@@ -20,7 +21,7 @@ public class CameraControl : MonoBehaviour
     }
     void Awake()
     {
-        instance = this;
+        Instance = this;
         _cameraPositions = new CameraPosition[]
         {
             new CameraPosition(new Vector3(0.0f, 0.0f, -scale), new Vector3(0.0f, 0.0f, 0.0f)),
