@@ -25,16 +25,12 @@ public class UserControls : MonoBehaviour
     void FixedUpdate()
     {
         if(up) {
-            Debug.Log("Got Up 1");
             CameraControl.Instance.UserInput(Control.UP);
         } else if(down) {
-            Debug.Log("Got Down 2");
             CameraControl.Instance.UserInput(Control.DOWN);
         } else if(left) {
-            Debug.Log("Got Left 3");
             CameraControl.Instance.UserInput(Control.LEFT);
         } else if(right) {
-            Debug.Log("Got Right 4");
             CameraControl.Instance.UserInput(Control.RIGHT);
         }
 
