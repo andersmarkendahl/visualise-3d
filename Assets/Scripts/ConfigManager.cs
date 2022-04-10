@@ -23,10 +23,11 @@ public class ConfigManager : MonoBehaviour
             new DataPoint(10, 0 ,10),
             new DataPoint(10, 10 ,10)   
         };
-        Config _dummyConfig = new Config(_dummyDataPoints);
+        MetaData _dummyMetaData = new MetaData("Not Much X", "Much X", "Not Much Y", "Much Y", "Not Much Z", "Much Z");
+        Config _dummyConfig = new Config(_dummyMetaData, _dummyDataPoints);
         jsonString = JsonUtility.ToJson(_dummyConfig);
 
-        // The real variable
+        // The real configuration to be assigned here
         _config = JsonUtility.FromJson<Config>(jsonString);
     }
     void Start()
