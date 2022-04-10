@@ -5,7 +5,6 @@ using UnityEngine;
 public class ConfigManager : MonoBehaviour
 {
     public GameObject DataPointPrefab;
-    // Start is called before the first frame update
     private Config _config;
     private DataPoint[] _dataPoints;
     private string jsonString;
