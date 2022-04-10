@@ -1,22 +1,55 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class CameraControl : MonoBehaviour
 {
     public static CameraControl Instance;
-    public float scale = 10.0f;
+    public float Scale;
+    public float MoveTime;
 
     private CameraPosition[] _cameraPositions;
     private int _currentIndex = 0;
+    private bool _moveBlock;
 
-    private void SetCameraPosition(int index)
+	private IEnumerator CameraMove(int newIndex)
+	{
+		var elapsedTime = 0.0f;
+
+        // Collect position and rotation data   
+        Vector3 startCoordinates = _cameraPositions[_currentIndex].Coordinate;
+        Vector3 startRotation = _cameraPositions[_currentIndex].Rotation;
+        Vector3 destCoordinates = _cameraPositions[newIndex].Coordinate;
+        Vector3 destRotation = _cameraPositions[newIndex].Rotation;
+
+		// Block new user input
+        _moveBlock = true;
+
+		// Gradually move camera and rotation
+		while (elapsedTime < MoveTime)
+		{
+			transform.position = Vector3.Lerp(startCoordinates, destCoordinates, (elapsedTime / MoveTime));
+            transform.rotation = Quaternion.Euler(Vector3.Lerp(startRotation, destRotation, (elapsedTime / MoveTime)));
+			elapsedTime += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+		transform.position = destCoordinates;
+        transform.rotation = Quaternion.Euler(destRotation);
+
+		// Allow new user input
+		_moveBlock = false;
+        // Update Index when movement done
+        _currentIndex = newIndex;
+	}
+    private void SetCameraPosition(int newIndex)
     {
-        gameObject.transform.position = _cameraPositions[index].Coordinate;
-        gameObject.transform.rotation = Quaternion.Euler(_cameraPositions[index].Rotation);
-        _currentIndex = index;
+        StartCoroutine(CameraMove(newIndex));
     }
     public void UserInput( Control value )
     {
+        if (_moveBlock)
+            return;
+
         switch (_currentIndex)
         {
         case 0:
@@ -47,9 +80,9 @@ public class CameraControl : MonoBehaviour
         Instance = this;
         _cameraPositions = new CameraPosition[]
         {
-            new CameraPosition(new Vector3(0.0f, 0.0f, -scale), new Vector3(0.0f, 0.0f, 0.0f)),
-            new CameraPosition(new Vector3(scale, 0.0f, 0.0f), new Vector3(0.0f, -90.0f, 0.0f)),
-            new CameraPosition(new Vector3(0.0f, scale, 0.0f), new Vector3(90.0f, 0.0f, 0.0f)),
+            new CameraPosition(new Vector3(0.0f, 0.0f, -Scale), new Vector3(0.0f, 0.0f, 0.0f)),
+            new CameraPosition(new Vector3(Scale, 0.0f, 0.0f), new Vector3(0.0f, -90.0f, 0.0f)),
+            new CameraPosition(new Vector3(0.0f, Scale, 0.0f), new Vector3(90.0f, 0.0f, 0.0f)),
         };
         // Switch to default starting position
         SetCameraPosition(_currentIndex);
