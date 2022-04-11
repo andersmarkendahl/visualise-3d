@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ConfigManager : MonoBehaviour
 {
+    public static ConfigManager Instance;
     public GameObject DataPointPrefab;
-    private Config _config;
+    public Config Conf;
     private DataPoint[] _dataPoints;
     private string jsonString;
     void Awake()
     {
+        Instance = this;
         // Dummy data before file can be read
         DataPoint[] _dummyDataPoints = new DataPoint[]
         {
@@ -27,13 +29,14 @@ public class ConfigManager : MonoBehaviour
         jsonString = JsonUtility.ToJson(_dummyConfig);
 
         // The real configuration to be assigned here
-        _config = JsonUtility.FromJson<Config>(jsonString);
+        Conf = JsonUtility.FromJson<Config>(jsonString);
     }
     void Start()
     {
-        foreach (DataPoint dp in _config.DataPoints)
+        foreach (DataPoint dp in Conf.DataPoints)
         {
             Instantiate(DataPointPrefab, dp.Coordinate , Quaternion.identity);
         }
+
     }
 }
