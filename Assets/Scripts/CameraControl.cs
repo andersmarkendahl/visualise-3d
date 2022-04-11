@@ -8,8 +8,8 @@ public class CameraControl : MonoBehaviour
     public float Scale;
     public float MoveTime;
     public GameObject UpLabel, DownLabel, LeftLabel, RightLabel;
-    private Text UpText, DownText, LeftText, RightText;
 
+    private Text _upText, _downText, _leftText, _rightText;
     private CameraPosition[] _cameraPositions;
     private int _currentIndex = 0;
     private bool _moveBlock;
@@ -47,38 +47,38 @@ public class CameraControl : MonoBehaviour
     {
         var elapsedTime = 0.0f;
         var halfMoveTime = MoveTime/2;
-        var origAlpha = UpText.color.a;
+        var origAlpha = _upText.color.a;
 
         // Gradually Fade Out Labels
         while (elapsedTime < halfMoveTime)
         {
             float alpha = Mathf.Lerp(origAlpha, 0.0f, (elapsedTime / halfMoveTime));
-            UpText.color = new Color(UpText.color.r, UpText.color.g, UpText.color.b, alpha);
-            DownText.color = new Color(DownText.color.r, DownText.color.g, DownText.color.b, alpha);
-            LeftText.color = new Color(LeftText.color.r, LeftText.color.g, LeftText.color.b, alpha);
-            RightText.color = new Color(RightText.color.r, RightText.color.g, RightText.color.b, alpha);
+            _upText.color = new Color(_upText.color.r, _upText.color.g, _upText.color.b, alpha);
+            _downText.color = new Color(_downText.color.r, _downText.color.g, _downText.color.b, alpha);
+            _leftText.color = new Color(_leftText.color.r, _leftText.color.g, _leftText.color.b, alpha);
+            _rightText.color = new Color(_rightText.color.r, _rightText.color.g, _rightText.color.b, alpha);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         switch (newIndex)
         {
         case 0:
-            UpText.text = ConfigManager.Instance.Conf.Meta.YLabelEnd;
-            DownText.text = ConfigManager.Instance.Conf.Meta.YLabelStart;
-            LeftText.text = ConfigManager.Instance.Conf.Meta.XLabelStart;
-            RightText.text = ConfigManager.Instance.Conf.Meta.XLabelEnd;
+            _upText.text = ConfigManager.Instance.Conf.Meta.YLabelEnd;
+            _downText.text = ConfigManager.Instance.Conf.Meta.YLabelStart;
+            _leftText.text = ConfigManager.Instance.Conf.Meta.XLabelStart;
+            _rightText.text = ConfigManager.Instance.Conf.Meta.XLabelEnd;
             break;
         case 1:
-            UpText.text = ConfigManager.Instance.Conf.Meta.YLabelEnd;
-            DownText.text = ConfigManager.Instance.Conf.Meta.YLabelStart;
-            LeftText.text = ConfigManager.Instance.Conf.Meta.ZLabelStart;
-            RightText.text = ConfigManager.Instance.Conf.Meta.ZLabelEnd;
+            _upText.text = ConfigManager.Instance.Conf.Meta.YLabelEnd;
+            _downText.text = ConfigManager.Instance.Conf.Meta.YLabelStart;
+            _leftText.text = ConfigManager.Instance.Conf.Meta.ZLabelStart;
+            _rightText.text = ConfigManager.Instance.Conf.Meta.ZLabelEnd;
             break;
         case 2:
-            UpText.text = ConfigManager.Instance.Conf.Meta.ZLabelEnd;
-            DownText.text = ConfigManager.Instance.Conf.Meta.ZLabelStart;
-            LeftText.text = ConfigManager.Instance.Conf.Meta.XLabelStart;
-            RightText.text = ConfigManager.Instance.Conf.Meta.XLabelEnd;
+            _upText.text = ConfigManager.Instance.Conf.Meta.ZLabelEnd;
+            _downText.text = ConfigManager.Instance.Conf.Meta.ZLabelStart;
+            _leftText.text = ConfigManager.Instance.Conf.Meta.XLabelStart;
+            _rightText.text = ConfigManager.Instance.Conf.Meta.XLabelEnd;
             break;
         }
         // Gradually Fade In Labels
@@ -86,10 +86,10 @@ public class CameraControl : MonoBehaviour
         while (elapsedTime < halfMoveTime)
         {
             float alpha = Mathf.Lerp(0.0f, origAlpha, elapsedTime/halfMoveTime);
-            UpText.color = new Color(UpText.color.r, UpText.color.g, UpText.color.b, alpha);
-            DownText.color = new Color(DownText.color.r, DownText.color.g, DownText.color.b, alpha);
-            LeftText.color = new Color(LeftText.color.r, LeftText.color.g, LeftText.color.b, alpha);
-            RightText.color = new Color(RightText.color.r, RightText.color.g, RightText.color.b, alpha);
+            _upText.color = new Color(_upText.color.r, _upText.color.g, _upText.color.b, alpha);
+            _downText.color = new Color(_downText.color.r, _downText.color.g, _downText.color.b, alpha);
+            _leftText.color = new Color(_leftText.color.r, _leftText.color.g, _leftText.color.b, alpha);
+            _rightText.color = new Color(_rightText.color.r, _rightText.color.g, _rightText.color.b, alpha);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -139,10 +139,10 @@ public class CameraControl : MonoBehaviour
             new CameraPosition(new Vector3(0.0f, Scale, 0.0f), new Vector3(90.0f, 0.0f, 0.0f)),
         };
         // Assign Text variables
-        UpText = UpLabel.GetComponent<Text>();
-        DownText = DownLabel.GetComponent<Text>();
-        LeftText = LeftLabel.GetComponent<Text>();
-        RightText = RightLabel.GetComponent<Text>();
+        _upText = UpLabel.GetComponent<Text>();
+        _downText = DownLabel.GetComponent<Text>();
+        _leftText = LeftLabel.GetComponent<Text>();
+        _rightText = RightLabel.GetComponent<Text>();
         // Switch to default starting position
         SetCameraPosition(_currentIndex);
     }

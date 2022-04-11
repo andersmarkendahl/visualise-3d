@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scale: 50
-  MoveTime: 3
+  MoveTime: 2
   UpLabel: {fileID: 1577749883}
   DownLabel: {fileID: 1114040580}
   LeftLabel: {fileID: 40919614}
