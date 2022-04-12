@@ -16,6 +16,7 @@ jobs:
           command: |
             lsb_release -a
             whoami;groups
+            echo "$UNITY_LICENSE_CONTENT"
       - run:
           name: Preparation
           command: |
