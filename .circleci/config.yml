@@ -16,4 +16,11 @@ jobs:
           command: |
             lsb_release -a
             whoami;groups
-
+      - run:
+          name: Preparation
+          command: |
+            test -x $UNITY
+            mkdir -p $INFO
+            mkdir -p ~/.cache/unity3d
+            mkdir -p ~/.local/share/unity3d/Unity/
+            echo "$UNITY_LICENSE_CONTENT" | base64 --decode | tr -d '\r' > ~/.local/share/unity3d/Unity/Unity_lic.ulf
