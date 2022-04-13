@@ -19,14 +19,20 @@ class MacOS
 		string currentVersion = PlayerSettings.bundleVersion;
 		int majorIndex = Convert.ToInt32(currentVersion.Substring(0, 1));
 		int minorIndex = Convert.ToInt32(currentVersion.Substring(2, 1));
+		int patchIndex = Convert.ToInt32(currentVersion.Substring(4, 1));
 		switch (releaseType)
 		{
 			case "major":
 				majorIndex++;
 				minorIndex = 0;
+				patchIndex = 0;
 				break;
 			case "minor":
 				minorIndex++;
+				patchIndex = 0;
+				break;
+			case "patch":
+				patchIndex++;
 				break;
 			case "overwrite":
 				break;
@@ -36,7 +42,7 @@ class MacOS
 				break;
 		}
 		// Set bundleVersion based on releaseType
-		PlayerSettings.bundleVersion = majorIndex.ToString() + "." + minorIndex.ToString();
+		PlayerSettings.bundleVersion = majorIndex.ToString() + "." + minorIndex.ToString() + "." + patchIndex.ToString();
 		// Always step bundleVersionCode
 		Console.WriteLine("MacOS.Build: New version = " + PlayerSettings.bundleVersion);
 	}

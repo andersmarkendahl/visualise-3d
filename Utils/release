@@ -2,7 +2,7 @@
 ##
 ##	Script for the visualise-3d
 ##
-##		release <major|minor|overwrite>
+##		release <major|minor|patch|overwrite>
 ##
 
 # Helper functions
@@ -128,7 +128,7 @@ Log "Version new: $bundleVersion"
 
 # Set version-specific environment variables
 export __targetDir="$HOME/visualise-3d-builds/v$bundleVersion-$timeStamp"
-export __targetFile="visualise-3d-$bundleVersion"
+export __targetFile="visualise-3d-$(echo $bundleVersion | sed 's/\./_/g')"
 CreateDir $__targetDir
 
 Log "Testing Passed"
