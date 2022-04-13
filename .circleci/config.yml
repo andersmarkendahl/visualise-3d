@@ -8,7 +8,7 @@ jobs:
     environment:
       UNITY: /usr/bin/unity-editor
       TOP: /root/visualise-3d
-      INFO: /root/visualise-3d/build_info
+      BUILD: /root/visualise-3d/build
     steps:
       - checkout
       - run:
@@ -21,7 +21,13 @@ jobs:
           name: Preparation
           command: |
             test -x $UNITY
-            mkdir -p $INFO
+            mkdir -p $BUILD
             mkdir -p ~/.cache/unity3d
             mkdir -p ~/.local/share/unity3d/Unity/
             echo "$UNITY_LICENSE_CONTENT" | base64 --decode | tr -d '\r' > ~/.local/share/unity3d/Unity/Unity_lic.ulf
+      - run:
+          name: Run Build
+          command: |
+          export __targetDir=$BUILD
+          export __targetFile=visualise-3d
+          $UNITY -batchmode -quit -projectPath $TOP -testResults $BUILD/results.xml -logFile $BUILD/logs.txt -executeMethod MacOS.Build
