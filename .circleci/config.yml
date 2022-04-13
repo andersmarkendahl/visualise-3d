@@ -28,6 +28,6 @@ jobs:
       - run:
           name: Run Build
           command: |
-          export __targetDir=$BUILD
-          export __targetFile=visualise-3d
-          $UNITY -batchmode -quit -projectPath $TOP -testResults $BUILD/results.xml -logFile $BUILD/logs.txt -executeMethod MacOS.Build
+            export __targetDir=$BUILD
+            export __targetFile=visualise-3d
+            $UNITY -batchmode -quit -projectPath $TOP -testResults $BUILD/results.xml -logFile $BUILD/logs.txt -executeMethod MacOS.Build
