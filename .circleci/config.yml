@@ -31,3 +31,6 @@ jobs:
             export __targetDir=$BUILD
             export __targetFile=visualise-3d
             $UNITY -batchmode -quit -projectPath $TOP -testResults $BUILD/results.xml -logFile $BUILD/logs.txt -executeMethod MacOS.Build
+      - store_artifacts:
+          path: /root/visualise-3d/build
+          destination: ./build
