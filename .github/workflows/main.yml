@@ -52,7 +52,9 @@ jobs:
         if: ${{ matrix.targetPlatform=='StandaloneLinux64'}}
         env:
           EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d
-        run: chmod +x $EXEC
+        run: |
+          whoami
+          sudo chmod +x $EXEC
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
