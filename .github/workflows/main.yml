@@ -54,7 +54,7 @@ jobs:
         env:
           PATH: build/${{ matrix.targetPlatform }}/visualise-3d.*
         run: |
-          echo "Only on MacOS and Linux"
+          echo $PATH
           chmod +x $PATH
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
