@@ -49,13 +49,12 @@ jobs:
           versioning: Semantic
           customParameters: -ScriptingImplementation Mono2x -StrictMode
       - name: Make Executable
-
         if: ${{ matrix.targetPlatform=='StandaloneOSX' || matrix.targetPlatform=='StandaloneLinux64'}}
         env:
-          PATH: build/${{ matrix.targetPlatform }}/visualise-3d.*
+          EXEC: build/${{ matrix.targetPlatform }}/visualise-3d.*
         run: |
-          echo $PATH
-          chmod +x $PATH
+          echo $EXEC
+          chmod +x $EXEC
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
