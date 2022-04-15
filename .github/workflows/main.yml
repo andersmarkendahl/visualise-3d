@@ -25,15 +25,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checking out repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: actions/cache@v2
+      - name: Loading Cache
+        uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-      - uses: game-ci/unity-builder@v2.0.3
+      - name: Building for ${{ matrix.targetPlatform }}
+        uses: game-ci/unity-builder@v2.0.3
         # You may pin to the exact commit or the version.
         # uses: game-ci/unity-builder@4be5d2ddf4e0f4f16799576555bf7d2fc1c61c08
         env:
@@ -45,11 +48,16 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
           customParameters: -ScriptingImplementation Mono2x -StrictMode
-      - if: ${{ matrix.targetPlatform=='StandaloneOSX' || matrix.targetPlatform=='StandaloneLinux64'}}
+      - name: Make Executable
+
+        if: ${{ matrix.targetPlatform=='StandaloneOSX' || matrix.targetPlatform=='StandaloneLinux64'}}
+        env:
+          PATH: build/${{ matrix.targetPlatform }}/visualise-3d.*
         run: |
           echo "Only on MacOS and Linux"
-          chmod +x build/{{ matrix.targetPlatform }}/visualise-3d.*
-      - uses: actions/upload-artifact@v2
+          chmod +x $PATH
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
         with:
           name: Visualise-3d-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
