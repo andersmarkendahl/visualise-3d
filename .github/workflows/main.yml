@@ -52,6 +52,7 @@ jobs:
           EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d
         run: |
           whoami
+          ls -l $EXEC
           sudo chmod +x $EXEC
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
