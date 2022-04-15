@@ -28,12 +28,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      # Loading Cache for platform
       - name: Loading Cache
         uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
+      # Build for each platform
       - name: Building for ${{ matrix.targetPlatform }}
         uses: game-ci/unity-builder@v2.0.3
         # You may pin to the exact commit or the version.
@@ -46,16 +48,30 @@ jobs:
           buildName: visualise-3d 
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
-      - name: Make Executable (Linux)
-        if: ${{ matrix.targetPlatform=='StandaloneLinux64'}}
+      # Manual Packaging
+      - name: Create Archive
         env:
-          EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d
-        run: |
-          whoami
-          ls -l $EXEC
-          sudo chmod +x $EXEC
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+          PM: ${{ matrix.targetPlatform }}
+        run: tar -cvf $PM.tar ./build/$PM
+      # Create Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Visualise-3d-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # Upload release Asset
+      - name: Upload Release Assets
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: build/${{ matrix.targetPlatform }}.tar
+          asset_name: ${{ matrix.targetPlatform }}.tar
+          asset_content_type: application/tar
