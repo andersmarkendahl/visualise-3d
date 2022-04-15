@@ -48,14 +48,11 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
           customParameters: -ScriptingImplementation Mono2x -StrictMode
-      - name: Make Executable
+      - name: Make Executable (Linux)
         if: ${{ matrix.targetPlatform=='StandaloneLinux64'}}
         env:
-          EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d.*
-        run: |
-          echo $EXEC
-          find ./build
-          chmod +x $EXEC
+          EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d
+        run: chmod +x $EXEC
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
