@@ -57,3 +57,7 @@ jobs:
           #gitPrivateToken: # optional, default is 
           # User and optionally group (user or user:group or uid:gid) to give ownership of the resulting build artifacts
           #chownFilesTo: # optional, default is 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
