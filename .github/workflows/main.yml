@@ -61,8 +61,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.unity_build.outputs.buildVersion }}
-          release_name: Release ${{ steps.unity_build.outputs.buildVersion }}
+          tag_name: ${{ steps.unity_build.outputs.buildVersion }}-${{ matrix.targetPlatform }}
+          release_name: Release ${{ steps.unity_build.outputs.buildVersion }}-${{ matrix.targetPlatform }}
           draft: false
           prerelease: false
       # Upload release Asset
@@ -73,6 +73,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./build/${{ matrix.targetPlatform }}.tar
+          asset_path: ${{ matrix.targetPlatform }}.tar
           asset_name: ${{ matrix.targetPlatform }}.tar
           asset_content_type: application/x-tar
