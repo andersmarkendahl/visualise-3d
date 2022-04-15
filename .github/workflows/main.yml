@@ -49,7 +49,7 @@ jobs:
           versioning: Semantic
           customParameters: -ScriptingImplementation Mono2x -StrictMode
       - name: Make Executable
-        if: ${{ matrix.targetPlatform=='StandaloneOSX' || matrix.targetPlatform=='StandaloneLinux64'}}
+        if: ${{ matrix.targetPlatform=='StandaloneLinux64'}}
         env:
           EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d.*
         run: |
