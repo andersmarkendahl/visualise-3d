@@ -45,21 +45,10 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
           customParameters: -ScriptingImplementation Mono2x -StrictMode
-      - name: Make Executable MacOS
-        if: ${{ matrix.targetPlatform=='StandaloneOSX' }}
+      - if: ${{ matrix.targetPlatform=='StandaloneOSX' || matrix.targetPlatform=='StandaloneLinux64'}}
         run: |
-          echo "Only on MacOS"
-          find .
-      - name: Make Executable Windows
-        if: ${{ matrix.targetPlatform=='StandaloneWindows64' }}
-        run: |
-          echo "Only on Windows"
-          find .
-      - name: Make Executable Linux
-        if: ${{ matrix.targetPlatform=='StandaloneLinux64' }}
-        run: |
-          echo "Only on Linux"
-          find . 
+          echo "Only on MacOS and Linux"
+          chmod +x build/{{ matrix.targetPlatform }}/visualise-3d.*
       - uses: actions/upload-artifact@v2
         with:
           name: Visualise-3d-${{ matrix.targetPlatform }}
