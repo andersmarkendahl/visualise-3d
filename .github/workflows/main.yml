@@ -51,9 +51,10 @@ jobs:
       - name: Make Executable
         if: ${{ matrix.targetPlatform=='StandaloneOSX' || matrix.targetPlatform=='StandaloneLinux64'}}
         env:
-          EXEC: build/${{ matrix.targetPlatform }}/visualise-3d.*
+          EXEC: ./build/${{ matrix.targetPlatform }}/visualise-3d.*
         run: |
           echo $EXEC
+          find ./build
           chmod +x $EXEC
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
