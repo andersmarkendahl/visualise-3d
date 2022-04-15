@@ -47,7 +47,7 @@ jobs:
           buildName: visualise-3d 
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
-          customParameters: -ScriptingImplementation Mono2x -StrictMode
+          customParameters: -StrictMode
       - name: Make Executable (Linux)
         if: ${{ matrix.targetPlatform=='StandaloneLinux64'}}
         env:
