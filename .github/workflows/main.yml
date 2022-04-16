@@ -51,16 +51,17 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           versioning: Semantic
       # Create Archive
-      - name: Create Archive
+      - name: Create Archive ${{ matrix.targetPlatform }}
         env:
           PM: ${{ matrix.targetPlatform }}
         run: tar -cvf $PM.tar -C ./build/$PM .
       # Upload Archive
-      - name: Upload Archive
+      - name: Upload Archive ${{ matrix.targetPlatform }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.targetPlatform }}-archive
           path: ${{ matrix.targetPlatform }}.tar
+      # Store version for release job
       - name: Store Version
         id: version_id
         env:
@@ -73,7 +74,7 @@ jobs:
       url-output: ${{ steps.url_id.outputs.url }}
     steps:
       # Create Release
-      - name: Create Release
+      - name: Create Github Release
         id: create_release_id
         uses: actions/create-release@v1
         env:
@@ -83,6 +84,7 @@ jobs:
           release_name: Release ${{ needs.build.outputs.version-output }}
           draft: false
           prerelease: false
+      # Store URL for upload job
       - name: Store URL
         id: url_id
         env:
@@ -97,17 +99,11 @@ jobs:
           - StandaloneOSX
           - StandaloneLinux64
     steps:
-      - uses: actions/download-artifact@v3
+      - name: Download Archive ${{ matrix.targetPlatform }}
+        uses: actions/download-artifact@v3
         with:
           name: ${{ matrix.targetPlatform }}-archive
       # Upload release Asset
-      - name: debug
-        env:
-          FILE: ${{ matrix.targetPlatform }}.tar
-        run: |
-          ls -lrt
-          ls -lrt $FILE
-          pwd
       - name: Upload Release Assets
         uses: actions/upload-release-asset@v1
         env:
