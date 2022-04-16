@@ -78,7 +78,6 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VER: 
         with:
           tag_name: ${{ needs.build.outputs.version-output }}
           release_name: Release ${{ needs.build.outputs.version-output }}
@@ -103,8 +102,14 @@ jobs:
           name: ${{ matrix.targetPlatform }}.tar
           path: ${{ matrix.targetPlatform }}.tar
       # Upload release Asset
+      - name: debug
+        env:
+          FILE: ${{ matrix.targetPlatform }}.tar
+        run: |
+          ls -lrt && echo "done1"
+          ls -lrt $FILE && "done2"
+          pwd && echo "done3"
       - name: Upload Release Assets
-        id: upload_release_asset_id 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
