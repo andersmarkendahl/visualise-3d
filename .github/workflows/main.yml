@@ -59,7 +59,7 @@ jobs:
       - name: Upload Archive
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.targetPlatform }}.tar
+          name: ${{ matrix.targetPlatform }}-archive
           path: ${{ matrix.targetPlatform }}.tar
       - name: Store Version
         id: version_id
@@ -99,16 +99,15 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: ${{ matrix.targetPlatform }}.tar
-          path: ${{ matrix.targetPlatform }}.tar
+          name: ${{ matrix.targetPlatform }}-archive
       # Upload release Asset
       - name: debug
         env:
           FILE: ${{ matrix.targetPlatform }}.tar
         run: |
-          ls -lrt && echo "done1"
-          ls -lrt $FILE && echo "done2"
-          pwd && echo "done3"
+          ls -lrt
+          ls -lrt $FILE
+          pwd
       - name: Upload Release Assets
         uses: actions/upload-release-asset@v1
         env:
