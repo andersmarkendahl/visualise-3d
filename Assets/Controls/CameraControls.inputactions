@@ -1,5 +1,5 @@
 {
-    "name": "UserControls",
+    "name": "CameraControls",
     "maps": [
         {
             "name": "Player",
@@ -36,6 +36,15 @@
                     "name": "Right",
                     "type": "Button",
                     "id": "fa239f13-d8f5-44b7-adc2-45cb53bd2ff9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "06ccc08a-5ad4-4bde-90ad-344c28965d14",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c09dad4-d07c-4dc8-8504-1279779a4eb2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
