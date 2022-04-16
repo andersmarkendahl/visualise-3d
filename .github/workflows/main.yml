@@ -68,6 +68,7 @@ jobs:
           VER: ${{ steps.unity_build_id.outputs.buildVersion }}
         run: echo "::set-output name=version::$VER"
   release:
+    if: ${{ !github.event.pull_request.head.repo.fork }}
     runs-on: ubuntu-latest
     needs: build
     outputs:
@@ -91,6 +92,7 @@ jobs:
           URL: ${{ steps.create_release_id.outputs.upload_url }}
         run: echo "::set-output name=url::$URL"
   upload:
+    if: ${{ !github.event.pull_request.head.repo.fork }}
     runs-on: ubuntu-latest
     needs: release
     strategy:
