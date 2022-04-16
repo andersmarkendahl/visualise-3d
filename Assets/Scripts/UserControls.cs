@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class UserControls : MonoBehaviour
 {
-    private CameraControls _controls;
+    private Controls _controls;
     private bool up = false, down = false, left = false, right = false, quit = false;
     private void OnEnable() => _controls.Player.Enable();
 	private void OnDisable() => _controls.Player.Disable();
     void Awake()
     {
         // Construct controls
-        _controls = new CameraControls();
-
+        _controls = new Controls();
         // Camera Movement
         _controls.Player.Up.performed += ctx => up = true;
         _controls.Player.Down.performed += ctx => down = true;
