@@ -75,7 +75,6 @@ jobs:
       # Create Release
       - name: Create Release
         id: create_release
-        run: 
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -88,7 +87,7 @@ jobs:
       - name: Store URL
         id: url_id
         env:
-          URL: ${{ release.steps.create_release.outputs.upload_url }}
+          URL: ${{ steps.create_release.outputs.upload_url }}
         run: echo "::set-output name=url::$URL"
   upload:
     runs-on: ubuntu-latest
