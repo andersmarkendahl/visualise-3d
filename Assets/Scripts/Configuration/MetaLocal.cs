@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [System.Serializable]
-public class MetaDataPoint
+public class MetaLocal
 {
     public string Header;
-    public MetaDataPoint(string header)
+    public MetaLocal(string header)
     {
         Header = header;
     }

@@ -4,10 +4,10 @@ using UnityEngine;
 public class DataPoint
 {
     public Vector3 Coordinate;
-    public MetaDataPoint Info;
-    public DataPoint(float x, float y, float z, MetaDataPoint info)
+    public MetaLocal Local;
+    public DataPoint(float x, float y, float z, MetaLocal local)
     {
         Coordinate = new Vector3(x, y, z);
-        Info = info;
+        Local = local;
     }
 }

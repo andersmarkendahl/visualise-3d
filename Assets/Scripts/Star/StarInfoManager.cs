@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class StarInfoManager : MonoBehaviour
 {
-    private MetaDataPoint info;
+    private MetaLocal local;
 
-    public MetaDataPoint Info { get => info; set => info = value; }
+    public MetaLocal Local { get => local; set => local = value; }
     public Text Header;
     void Start()
     {
-        Header.text = info.Header;
+        Header.text = local.Header;
     }
 }

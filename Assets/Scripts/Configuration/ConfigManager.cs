@@ -15,11 +15,11 @@ public class ConfigManager : MonoBehaviour
         // Dummy data before file can be read
         DataPoint[] _dummyDataPoints = new DataPoint[]
         {
-            new DataPoint(0, 0 ,0, new MetaDataPoint("AAAA")),
-            new DataPoint(10, 0 ,0, new MetaDataPoint("BBBB")),
-            new DataPoint(3, 2 ,1, new MetaDataPoint("Thirty Characters Maximum okay")),
-            new DataPoint(7, 6 ,5, new MetaDataPoint("KKKK")),
-            new DataPoint(10, 9 ,8, new MetaDataPoint("Thirty Characters Maximum okay"))
+            new DataPoint(0, 0 ,0, new MetaLocal("AAAA")),
+            new DataPoint(10, 0 ,0, new MetaLocal("BBBB")),
+            new DataPoint(3, 2 ,1, new MetaLocal("Thirty Characters Maximum okay")),
+            new DataPoint(7, 6 ,5, new MetaLocal("KKKK")),
+            new DataPoint(10, 9 ,8, new MetaLocal("Thirty Characters Maximum okay"))
         };
         MetaGlobal _dummyMetaGlobal = new MetaGlobal("Not Much X", "Much X", "Not Much Y", "Much Y", "Not Much Z", "Much Z");
         Config _dummyConfig = new Config(_dummyMetaGlobal, _dummyDataPoints);
@@ -32,8 +32,8 @@ public class ConfigManager : MonoBehaviour
     {
         foreach (DataPoint dp in Conf.DataPoints)
         {
-            GameObject d = Instantiate(StarPrefab, dp.Coordinate - 5 * new Vector3(1.0f, 1.0f, 1.0f) , Quaternion.identity);
-            d.GetComponent<StarInfoManager>().Info = dp.Info;
+            GameObject s = Instantiate(StarPrefab, dp.Coordinate - 5 * new Vector3(1.0f, 1.0f, 1.0f) , Quaternion.identity);
+            s.GetComponent<StarInfoManager>().Local = dp.Local;
         }
 
     }
