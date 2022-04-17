@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConfigManager : MonoBehaviour
 {
     public static ConfigManager Instance;
-    public GameObject DataPointPrefab;
+    public GameObject StarPrefab;
     public Config Conf;
     private DataPoint[] _dataPoints;
     private string jsonString;
@@ -21,8 +21,8 @@ public class ConfigManager : MonoBehaviour
             new DataPoint(7, 6 ,5, new MetaDataPoint("KKKK")),
             new DataPoint(10, 9 ,8, new MetaDataPoint("Thirty Characters Maximum okay"))
         };
-        MetaData _dummyMetaData = new MetaData("Not Much X", "Much X", "Not Much Y", "Much Y", "Not Much Z", "Much Z");
-        Config _dummyConfig = new Config(_dummyMetaData, _dummyDataPoints);
+        MetaGlobal _dummyMetaGlobal = new MetaGlobal("Not Much X", "Much X", "Not Much Y", "Much Y", "Not Much Z", "Much Z");
+        Config _dummyConfig = new Config(_dummyMetaGlobal, _dummyDataPoints);
         jsonString = JsonUtility.ToJson(_dummyConfig);
 
         // The real configuration to be assigned here
@@ -32,8 +32,8 @@ public class ConfigManager : MonoBehaviour
     {
         foreach (DataPoint dp in Conf.DataPoints)
         {
-            GameObject d = Instantiate(DataPointPrefab, dp.Coordinate - 5 * new Vector3(1.0f, 1.0f, 1.0f) , Quaternion.identity);
-            d.GetComponent<InfoManager>().Info = dp.Info;
+            GameObject d = Instantiate(StarPrefab, dp.Coordinate - 5 * new Vector3(1.0f, 1.0f, 1.0f) , Quaternion.identity);
+            d.GetComponent<StarInfoManager>().Info = dp.Info;
         }
 
     }

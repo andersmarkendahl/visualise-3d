@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 6011438952241355966}
   - component: {fileID: 7843378663138740851}
   m_Layer: 0
-  m_Name: DataPoint
+  m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

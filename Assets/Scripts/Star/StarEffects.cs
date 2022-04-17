@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataPointEffects : MonoBehaviour
+public class StarEffects : MonoBehaviour
 {
     private Vector3 _positionNorm;
     private Renderer _renderer;

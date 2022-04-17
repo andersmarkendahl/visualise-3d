@@ -63,22 +63,22 @@ public class CameraControl : MonoBehaviour
         switch (newIndex)
         {
         case 0:
-            _upText.text = ConfigManager.Instance.Conf.Meta.YLabelEnd;
-            _downText.text = ConfigManager.Instance.Conf.Meta.YLabelStart;
-            _leftText.text = ConfigManager.Instance.Conf.Meta.XLabelStart;
-            _rightText.text = ConfigManager.Instance.Conf.Meta.XLabelEnd;
+            _upText.text = ConfigManager.Instance.Conf.Global.YLabelEnd;
+            _downText.text = ConfigManager.Instance.Conf.Global.YLabelStart;
+            _leftText.text = ConfigManager.Instance.Conf.Global.XLabelStart;
+            _rightText.text = ConfigManager.Instance.Conf.Global.XLabelEnd;
             break;
         case 1:
-            _upText.text = ConfigManager.Instance.Conf.Meta.YLabelEnd;
-            _downText.text = ConfigManager.Instance.Conf.Meta.YLabelStart;
-            _leftText.text = ConfigManager.Instance.Conf.Meta.ZLabelStart;
-            _rightText.text = ConfigManager.Instance.Conf.Meta.ZLabelEnd;
+            _upText.text = ConfigManager.Instance.Conf.Global.YLabelEnd;
+            _downText.text = ConfigManager.Instance.Conf.Global.YLabelStart;
+            _leftText.text = ConfigManager.Instance.Conf.Global.ZLabelStart;
+            _rightText.text = ConfigManager.Instance.Conf.Global.ZLabelEnd;
             break;
         case 2:
-            _upText.text = ConfigManager.Instance.Conf.Meta.ZLabelEnd;
-            _downText.text = ConfigManager.Instance.Conf.Meta.ZLabelStart;
-            _leftText.text = ConfigManager.Instance.Conf.Meta.XLabelStart;
-            _rightText.text = ConfigManager.Instance.Conf.Meta.XLabelEnd;
+            _upText.text = ConfigManager.Instance.Conf.Global.ZLabelEnd;
+            _downText.text = ConfigManager.Instance.Conf.Global.ZLabelStart;
+            _leftText.text = ConfigManager.Instance.Conf.Global.XLabelStart;
+            _rightText.text = ConfigManager.Instance.Conf.Global.XLabelEnd;
             break;
         }
         // Gradually Fade In Labels

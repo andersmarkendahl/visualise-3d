@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InfoManager : MonoBehaviour
+public class StarInfoManager : MonoBehaviour
 {
     private MetaDataPoint info;
 
