@@ -33,7 +33,7 @@ public class ConfigManager : MonoBehaviour
         foreach (DataPoint dp in Conf.DataPoints)
         {
             GameObject s = Instantiate(StarPrefab, dp.Coordinate - 5 * new Vector3(1.0f, 1.0f, 1.0f) , Quaternion.identity);
-            s.GetComponent<StarInfoManager>().Local = dp.Local;
+            s.GetComponent<StarInfoManager>().Dpoint = dp;
         }
 
     }
