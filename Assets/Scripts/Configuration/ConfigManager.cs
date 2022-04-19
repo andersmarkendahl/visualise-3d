@@ -18,7 +18,7 @@ public class ConfigManager : MonoBehaviour
             new DataPoint(0, 0 ,0, new MetaLocal("AAAA")),
             new DataPoint(10, 0 ,0, new MetaLocal("BBBB")),
             new DataPoint(3, 2 ,1, new MetaLocal("Thirty Characters Maximum okay")),
-            new DataPoint(7, 6 ,5, new MetaLocal("KKKK")),
+            new DataPoint(7, 6 ,5, new MetaLocal("CCCCCCCCCCCC")),
             new DataPoint(10, 9 ,8, new MetaLocal("Thirty Characters Maximum okay"))
         };
         MetaGlobal _dummyMetaGlobal = new MetaGlobal("Not Much X", "Much X", "Not Much Y", "Much Y", "Not Much Z", "Much Z");
