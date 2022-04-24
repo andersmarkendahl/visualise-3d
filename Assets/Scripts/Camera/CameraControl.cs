@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using TMPro;
 public class CameraControl : MonoBehaviour
 {
     public static CameraControl Instance;
@@ -9,7 +9,7 @@ public class CameraControl : MonoBehaviour
     public float MoveTime;
     public GameObject UpLabel, DownLabel, LeftLabel, RightLabel;
 
-    private Text _upText, _downText, _leftText, _rightText;
+    private TMP_Text _upText, _downText, _leftText, _rightText;
     private CameraPosition[] _cameraPositions;
     private int _currentIndex = 0;
     private bool _moveBlock;
@@ -139,10 +139,10 @@ public class CameraControl : MonoBehaviour
             new CameraPosition(new Vector3(0.0f, Scale, 0.0f), new Vector3(90.0f, 0.0f, 0.0f)),
         };
         // Assign Text variables
-        _upText = UpLabel.GetComponent<Text>();
-        _downText = DownLabel.GetComponent<Text>();
-        _leftText = LeftLabel.GetComponent<Text>();
-        _rightText = RightLabel.GetComponent<Text>();
+        _upText = UpLabel.GetComponent<TMP_Text>();
+        _downText = DownLabel.GetComponent<TMP_Text>();
+        _leftText = LeftLabel.GetComponent<TMP_Text>();
+        _rightText = RightLabel.GetComponent<TMP_Text>();
         // Switch to default starting position
         SetCameraPosition(_currentIndex);
     }
