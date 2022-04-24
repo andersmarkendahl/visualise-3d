@@ -18,10 +18,6 @@ public class SceneryManager : MonoBehaviour
     {
         StartCoroutine(DelayLoadLevel(level));
     }
-    public void Quit()
-    {
-        Application.Quit();
-    }
     void Awake()
     {
         Instance = this;
