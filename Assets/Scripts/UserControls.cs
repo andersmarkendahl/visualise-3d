@@ -23,8 +23,8 @@ public class UserControls : MonoBehaviour
     void FixedUpdate()
     {
         if(quit)
-            Application.Quit();
-
+            SceneryManager.Instance.LoadLevel("Intro");
+            
         if(up) {
             CameraControl.Instance.UserInput(Control.UP);
         } else if(down) {
