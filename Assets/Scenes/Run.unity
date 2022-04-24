@@ -1369,7 +1369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1395648821870897989, guid: cb086f61e58327185a983c1ca0af03bd, type: 3}
       propertyPath: m_fontStyle
-      value: 33
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4760773220878891896, guid: cb086f61e58327185a983c1ca0af03bd, type: 3}
       propertyPath: m_Pivot.x
