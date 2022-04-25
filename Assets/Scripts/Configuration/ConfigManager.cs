@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class ConfigManager : MonoBehaviour
 {
@@ -12,21 +13,18 @@ public class ConfigManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        // Dummy data before file can be read
-        DataPoint[] _dummyDataPoints = new DataPoint[]
+        string path = PlayerPrefs.GetString("path");
+        if (File.Exists(path))
+		{
+			// Read the entire file and save its contents.
+			jsonString = File.ReadAllText(path);
+			// Deserialize the JSON data into a pattern matching the Config class.
+            Conf = JsonUtility.FromJson<Config>(jsonString);
+		}
+        else
         {
-            new DataPoint(0, 0 ,0, new MetaLocal("AAAAAAA")),
-            new DataPoint(10, 0 ,0, new MetaLocal("BBBB")),
-            new DataPoint(3, 2 ,1, new MetaLocal("Thirty Characters Maximum okay")),
-            new DataPoint(7, 6 ,5, new MetaLocal("CCCCCCCCCCCC")),
-            new DataPoint(10, 9 ,8, new MetaLocal("Thirty Characters Maximum okay"))
-        };
-        MetaGlobal _dummyMetaGlobal = new MetaGlobal("Not Much X", "Much X", "Not Much Y", "Much Y", "Not Much Z", "Much Z");
-        Config _dummyConfig = new Config(_dummyMetaGlobal, _dummyDataPoints);
-        jsonString = JsonUtility.ToJson(_dummyConfig);
-
-        // The real configuration to be assigned here
-        Conf = JsonUtility.FromJson<Config>(jsonString);
+            Debug.LogError("Failed to read " + path);
+        }
     }
     void Start()
     {

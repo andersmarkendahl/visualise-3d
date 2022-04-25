@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
         yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.Files, false, null, null, "Load JSON Configuration", "Load" );
         if(FileBrowser.Success)
         {
-            Debug.Log(FileBrowser.Result[0]);
+            PlayerPrefs.SetString("path",FileBrowser.Result[0]);
             SceneryManager.Instance.LoadLevel("Run");
         }
         else
