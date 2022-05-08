@@ -137,7 +137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3940520501776378152, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_Name
-      value: Axis (1)
+      value: YAxis1
       objectReference: {fileID: 0}
     - target: {fileID: 3940520501776378154, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_RootOrder
@@ -439,7 +439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3940520501776378152, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_Name
-      value: Axis
+      value: YAxis1
       objectReference: {fileID: 0}
     - target: {fileID: 3940520501776378154, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_RootOrder
@@ -501,7 +501,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3940520501776378152, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_Name
-      value: Axis (1)
+      value: XAxis1
       objectReference: {fileID: 0}
     - target: {fileID: 3940520501776378154, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_RootOrder
@@ -929,7 +929,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3940520501776378152, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_Name
-      value: Axis
+      value: XAxis1
       objectReference: {fileID: 0}
     - target: {fileID: 3940520501776378154, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_RootOrder
@@ -1102,7 +1102,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3940520501776378152, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_Name
-      value: Axis (1)
+      value: ZAxis2
       objectReference: {fileID: 0}
     - target: {fileID: 3940520501776378154, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_RootOrder
@@ -1391,7 +1391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3940520501776378152, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_Name
-      value: Axis
+      value: ZAxis1
       objectReference: {fileID: 0}
     - target: {fileID: 3940520501776378154, guid: 06a7d0a19783d992b943dd27543172db, type: 3}
       propertyPath: m_RootOrder
