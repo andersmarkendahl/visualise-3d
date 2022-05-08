@@ -66,6 +66,24 @@ public class CameraControl : MonoBehaviour
         // Update Index when movement done
         _currentIndex = newIndex;
     }
+    
+    private IEnumerator LabelFadeOut()
+    {
+        var elapsedTime = 0.0f;
+        var origAlpha = _upText.color.a;
+
+        // Gradually Fade Out Labels
+        while (elapsedTime < MoveTime)
+        {
+            float alpha = Mathf.Lerp(origAlpha, 0.0f, (elapsedTime / MoveTime));
+            _upText.color = new Color(_upText.color.r, _upText.color.g, _upText.color.b, alpha);
+            _downText.color = new Color(_downText.color.r, _downText.color.g, _downText.color.b, alpha);
+            _leftText.color = new Color(_leftText.color.r, _leftText.color.g, _leftText.color.b, alpha);
+            _rightText.color = new Color(_rightText.color.r, _rightText.color.g, _rightText.color.b, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
     private IEnumerator LabelChange(int newIndex)
     {
         var elapsedTime = 0.0f;
@@ -126,6 +144,7 @@ public class CameraControl : MonoBehaviour
     public void UserCalledZoomIn(Vector3 destCoordinates)
     {
         StartCoroutine(CameraZoom(destCoordinates - 5 * Vector3.one));
+        StartCoroutine(LabelFadeOut());
     }
     public void UserCalledRotate(Control value)
     {
