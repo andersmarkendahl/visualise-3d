@@ -26,13 +26,13 @@ public class UserControls : MonoBehaviour
             SceneryManager.Instance.LoadLevel("Intro");
             
         if(up) {
-            CameraControl.Instance.UserCalledRotate(Control.UP);
+            CameraControl.Instance.UserRotate(Control.UP);
         } else if(down) {
-            CameraControl.Instance.UserCalledRotate(Control.DOWN);
+            CameraControl.Instance.UserRotate(Control.DOWN);
         } else if(left) {
-            CameraControl.Instance.UserCalledRotate(Control.LEFT);
+            CameraControl.Instance.UserRotate(Control.LEFT);
         } else if(right) {
-            CameraControl.Instance.UserCalledRotate(Control.RIGHT);
+            CameraControl.Instance.UserRotate(Control.RIGHT);
         }
 
         up = false;
