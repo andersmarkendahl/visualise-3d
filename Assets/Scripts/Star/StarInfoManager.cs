@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +62,12 @@ public class StarInfoManager : MonoBehaviour
     void Start()
     {
         Header.text = _dpoint.Local.Header;
+        PanelName.text = _dpoint.Local.Header;
+        PanelText.text = 
+            "X value: " + _dpoint.Coordinate.x.ToString() + Environment.NewLine +
+            "Y value: " + _dpoint.Coordinate.y.ToString() + Environment.NewLine +
+            "Z value: " + _dpoint.Coordinate.z.ToString();
+
     }
     void Awake()
     {
