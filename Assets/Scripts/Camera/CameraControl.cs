@@ -10,11 +10,12 @@ public class CameraControl : MonoBehaviour
     public GameObject UpLabel, DownLabel, LeftLabel, RightLabel;
 
     private TMP_Text _upText, _downText, _leftText, _rightText;
+    private float _origLabelAlpha;
     private CameraPosition[] _cameraPositions;
     private int _currentIndex = 0;
     private bool _moveBlock;
 
-    private IEnumerator CameraZoom(Vector3 referencePoint)
+    private IEnumerator CameraZoomIn(Vector3 referencePoint)
     {
         var elapsedTime = 0.0f;
         
@@ -34,8 +35,6 @@ public class CameraControl : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = destCoordinates;
-        // Allow new user input
-        _moveBlock = false;
     }
     private IEnumerator CameraMove(int newIndex)
     {
@@ -67,15 +66,15 @@ public class CameraControl : MonoBehaviour
         _currentIndex = newIndex;
     }
     
-    private IEnumerator LabelFadeOut()
+    private IEnumerator LabelFade(float targetAlpha)
     {
         var elapsedTime = 0.0f;
-        var origAlpha = _upText.color.a;
+        var startAlpha = _upText.color.a;
 
-        // Gradually Fade Out Labels
+        // Gradually Fade Labels
         while (elapsedTime < MoveTime)
         {
-            float alpha = Mathf.Lerp(origAlpha, 0.0f, (elapsedTime / MoveTime));
+            float alpha = Mathf.Lerp(startAlpha, targetAlpha, (elapsedTime / MoveTime));
             _upText.color = new Color(_upText.color.r, _upText.color.g, _upText.color.b, alpha);
             _downText.color = new Color(_downText.color.r, _downText.color.g, _downText.color.b, alpha);
             _leftText.color = new Color(_leftText.color.r, _leftText.color.g, _leftText.color.b, alpha);
@@ -88,12 +87,11 @@ public class CameraControl : MonoBehaviour
     {
         var elapsedTime = 0.0f;
         var halfMoveTime = MoveTime/2;
-        var origAlpha = _upText.color.a;
 
         // Gradually Fade Out Labels
         while (elapsedTime < halfMoveTime)
         {
-            float alpha = Mathf.Lerp(origAlpha, 0.0f, (elapsedTime / halfMoveTime));
+            float alpha = Mathf.Lerp(_origLabelAlpha, 0.0f, (elapsedTime / halfMoveTime));
             _upText.color = new Color(_upText.color.r, _upText.color.g, _upText.color.b, alpha);
             _downText.color = new Color(_downText.color.r, _downText.color.g, _downText.color.b, alpha);
             _leftText.color = new Color(_leftText.color.r, _leftText.color.g, _leftText.color.b, alpha);
@@ -126,7 +124,7 @@ public class CameraControl : MonoBehaviour
         elapsedTime = 0.0f;
         while (elapsedTime < halfMoveTime)
         {
-            float alpha = Mathf.Lerp(0.0f, origAlpha, elapsedTime/halfMoveTime);
+            float alpha = Mathf.Lerp(0.0f, _origLabelAlpha, elapsedTime/halfMoveTime);
             _upText.color = new Color(_upText.color.r, _upText.color.g, _upText.color.b, alpha);
             _downText.color = new Color(_downText.color.r, _downText.color.g, _downText.color.b, alpha);
             _leftText.color = new Color(_leftText.color.r, _leftText.color.g, _leftText.color.b, alpha);
@@ -143,9 +141,18 @@ public class CameraControl : MonoBehaviour
     }
     public void UserCalledZoomIn(Vector3 destCoordinates)
     {
-        StartCoroutine(CameraZoom(destCoordinates - 5 * Vector3.one));
-        StartCoroutine(LabelFadeOut());
+        if (_moveBlock)
+            return;
+
+        StartCoroutine(CameraZoomIn(destCoordinates - 5 * Vector3.one));
+        StartCoroutine(LabelFade(0.0f));
     }
+    public void UserCalledZoomOut()
+    {
+        StartCoroutine(CameraMove(_currentIndex));
+        StartCoroutine(LabelFade(_origLabelAlpha));
+    }
+
     public void UserCalledRotate(Control value)
     {
         if (_moveBlock)
@@ -190,6 +197,8 @@ public class CameraControl : MonoBehaviour
         _downText = DownLabel.GetComponent<TMP_Text>();
         _leftText = LeftLabel.GetComponent<TMP_Text>();
         _rightText = RightLabel.GetComponent<TMP_Text>();
+        // Store original alpha of labels
+        _origLabelAlpha = _upText.color.a;
         // Switch to default starting position
         RotateCamera(_currentIndex);
     }
