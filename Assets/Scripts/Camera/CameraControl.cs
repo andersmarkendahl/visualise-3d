@@ -14,6 +14,29 @@ public class CameraControl : MonoBehaviour
     private int _currentIndex = 0;
     private bool _moveBlock;
 
+    private IEnumerator CameraZoom(Vector3 referencePoint)
+    {
+        var elapsedTime = 0.0f;
+        
+        // Start position of camera   
+        Vector3 startCoordinates = transform.position;
+        // Destination is reference point with offset
+        Vector3 destCoordinates = referencePoint + startCoordinates.normalized;
+
+        // Block new user input
+        _moveBlock = true;
+
+        // Gradually move camera and rotation
+        while (elapsedTime < MoveTime)
+        {
+            transform.position = Vector3.Lerp(startCoordinates, destCoordinates, (elapsedTime / MoveTime));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = destCoordinates;
+        // Allow new user input
+        _moveBlock = false;
+    }
     private IEnumerator CameraMove(int newIndex)
     {
         var elapsedTime = 0.0f;
@@ -94,12 +117,17 @@ public class CameraControl : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+    
     private void RotateCamera(int newIndex)
     {
         StartCoroutine(CameraMove(newIndex));
         StartCoroutine(LabelChange(newIndex));
     }
-    public void UserRotate( Control value )
+    public void UserCalledZoomIn(Vector3 destCoordinates)
+    {
+        StartCoroutine(CameraZoom(destCoordinates - 5 * Vector3.one));
+    }
+    public void UserCalledRotate(Control value)
     {
         if (_moveBlock)
             return;
