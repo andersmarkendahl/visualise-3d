@@ -28,10 +28,13 @@ public class ConfigManager : MonoBehaviour
     }
     void Start()
     {
+        int id = 0;
         foreach (DataPoint dp in Conf.DataPoints)
         {
             GameObject s = Instantiate(StarPrefab, dp.Coordinate - 5 * new Vector3(1.0f, 1.0f, 1.0f) , Quaternion.identity);
             s.GetComponent<StarInfoManager>().Dpoint = dp;
+            s.GetComponent<StarInfoManager>().Id = id;
+            id++;
         }
 
     }
