@@ -94,12 +94,12 @@ public class CameraControl : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-    private void SetCameraPosition(int newIndex)
+    private void RotateCamera(int newIndex)
     {
         StartCoroutine(CameraMove(newIndex));
         StartCoroutine(LabelChange(newIndex));
     }
-    public void UserInput( Control value )
+    public void UserRotate( Control value )
     {
         if (_moveBlock)
             return;
@@ -108,21 +108,21 @@ public class CameraControl : MonoBehaviour
         {
         case 0:
             if (value == Control.UP)
-                SetCameraPosition(2);
+                RotateCamera(2);
             else if (value == Control.RIGHT)
-                SetCameraPosition(1);
+                RotateCamera(1);
             break;
         case 1:
             if (value == Control.LEFT)
-                SetCameraPosition(0);
+                RotateCamera(0);
             else if (value == Control.UP)
-                SetCameraPosition(2);
+                RotateCamera(2);
             break;
         case 2:
             if (value == Control.DOWN)
-                SetCameraPosition(0);
+                RotateCamera(0);
             else if (value == Control.RIGHT)
-                SetCameraPosition(1);
+                RotateCamera(1);
             break;
         default:
             Debug.Log("Unknown current index for camera position" + _currentIndex);
@@ -144,7 +144,7 @@ public class CameraControl : MonoBehaviour
         _leftText = LeftLabel.GetComponent<TMP_Text>();
         _rightText = RightLabel.GetComponent<TMP_Text>();
         // Switch to default starting position
-        SetCameraPosition(_currentIndex);
+        RotateCamera(_currentIndex);
     }
 
 }
