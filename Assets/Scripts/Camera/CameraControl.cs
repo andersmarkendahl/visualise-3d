@@ -125,6 +125,9 @@ public class CameraControl : MonoBehaviour
             new CameraPosition(new Vector3(Scale, 0.0f, 0.0f), new Vector3(0.0f, -90.0f, 0.0f)),
             new CameraPosition(new Vector3(0.0f, Scale, 0.0f), new Vector3(90.0f, 0.0f, 0.0f)),
         };
+    }
+    void Start()
+    {
         // Switch to default starting position
         RotateCamera(_currentIndex);
     }
