@@ -38,6 +38,9 @@ public class StarInfoManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        PanelBackground.color = new Color(PanelBackground.color.r, PanelBackground.color.g, PanelBackground.color.b, targetAlpha);
+        PanelName.color = new Color(PanelName.color.r, PanelName.color.g, PanelName.color.b, targetAlpha);
+        PanelText.color = new Color(PanelText.color.r, PanelText.color.g, PanelText.color.b, targetAlpha);
     }
     private IEnumerator HeaderFade(float targetAlpha)
     {
@@ -52,6 +55,7 @@ public class StarInfoManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, targetAlpha);
     }
     public void ButtonClicked() {
         UserZoom.Instance.StarClicked(this);

@@ -8,7 +8,6 @@ public class UserZoom : MonoBehaviour
 
     public void StarClicked(StarInfoManager starInfoManager)
     {
-        Debug.Log("Got StarInfoManager, id=" + starInfoManager.Id);
         CameraControl.Instance.UserZoomIn(starInfoManager.Dpoint.Coordinate);
     }
     void Awake()
