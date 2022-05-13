@@ -13,7 +13,6 @@ public class CameraControl : MonoBehaviour
     private CameraPosition[] _cameraPositions;
     private bool _moveBlock;
 
-
     private IEnumerator CameraZoomIn(Vector3 referencePoint)
     {
         var elapsedTime = 0.0f;
@@ -26,6 +25,24 @@ public class CameraControl : MonoBehaviour
         // Block new user input
         _moveBlock = true;
 
+        // Gradually move camera
+        while (elapsedTime < MoveTime)
+        {
+            transform.position = Vector3.Lerp(startCoordinates, destCoordinates, (elapsedTime / MoveTime));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = destCoordinates;
+    }
+    private IEnumerator CameraZoomOut()
+    {
+        var elapsedTime = 0.0f;
+        
+        // Start position of camera   
+        Vector3 startCoordinates = transform.position;
+        // Destination is original camera position
+        Vector3 destCoordinates = _cameraPositions[_currentIndex].Coordinate;
+
         // Gradually move camera and rotation
         while (elapsedTime < MoveTime)
         {
@@ -34,6 +51,9 @@ public class CameraControl : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         transform.position = destCoordinates;
+
+        // Allow new user input
+        _moveBlock = false;
     }
     private IEnumerator CameraMove(int newIndex)
     {
@@ -81,7 +101,7 @@ public class CameraControl : MonoBehaviour
     }
     public void UserZoomOut()
     {
-        StartCoroutine(CameraMove(_currentIndex));
+        StartCoroutine(CameraZoomOut());
         CoordinateSystemManager.Instance.FadeInLabels();
         CoordinateSystemManager.Instance.FadeInAxis();
     }

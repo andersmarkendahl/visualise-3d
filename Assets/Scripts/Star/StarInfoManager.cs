@@ -19,6 +19,7 @@ public class StarInfoManager : MonoBehaviour
     private float _origHeaderAlpha;
     private DataPoint _dpoint;
     private int _id;
+    private static bool _selected = false;
 
     private IEnumerator PanelFade(float targetAlpha)
     {
@@ -75,16 +76,21 @@ public class StarInfoManager : MonoBehaviour
         CloseImage.color = new Color(CloseImage.color.r, CloseImage.color.g, CloseImage.color.b, targetAlpha);
     }
     public void StarSelected() {
+        if (_selected)
+            return;
+
         UserZoom.Instance.StarZoomIn(this);
         StartCoroutine(HeaderFade(0.0f));
         StartCoroutine(PanelFade(1.0f));
         StartCoroutine(ButtonFade(1.0f));
+        _selected = true;
     }
     public void StarUnSelected() {
         UserZoom.Instance.StarZoomOut(this);
         StartCoroutine(HeaderFade(_origHeaderAlpha));
         StartCoroutine(PanelFade(0.0f));
         StartCoroutine(ButtonFade(0.0f));
+        _selected = false;
     }
     void Start()
     {
