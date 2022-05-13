@@ -16,10 +16,10 @@ public class StarInfoManager : MonoBehaviour
     public TMP_Text PanelName, PanelText;
     public Button CloseButton;
 
+    private static bool _selected = false;
     private float _origHeaderAlpha;
     private DataPoint _dpoint;
     private int _id;
-    private static bool _selected = false;
 
     private IEnumerator PanelFade(float targetAlpha)
     {
