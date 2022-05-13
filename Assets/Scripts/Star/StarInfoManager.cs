@@ -14,6 +14,7 @@ public class StarInfoManager : MonoBehaviour
     public TMP_Text Header;
     public Image PanelBackground;
     public TMP_Text PanelName, PanelText;
+    public Button CloseButton;
 
     private float _origHeaderAlpha;
     private DataPoint _dpoint;
@@ -57,11 +58,33 @@ public class StarInfoManager : MonoBehaviour
         }
         Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, targetAlpha);
     }
-    public void ButtonClicked() {
-        UserZoom.Instance.StarClicked(this);
+    private IEnumerator ButtonFade(float targetAlpha)
+    {
+        Image CloseImage = CloseButton.image;
+        var elapsedTime = 0.0f;
+        var startA = CloseImage.color.a;
+
+        // Gradually Fade Labels
+        while (elapsedTime < PanelFadeTime)
+        {
+            float alpha = Mathf.Lerp(startA, targetAlpha, (elapsedTime / PanelFadeTime));
+            CloseImage.color = new Color(CloseImage.color.r, CloseImage.color.g, CloseImage.color.b, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        CloseImage.color = new Color(CloseImage.color.r, CloseImage.color.g, CloseImage.color.b, targetAlpha);
+    }
+    public void StarSelected() {
+        UserZoom.Instance.StarZoomIn(this);
         StartCoroutine(HeaderFade(0.0f));
         StartCoroutine(PanelFade(1.0f));
-
+        StartCoroutine(ButtonFade(1.0f));
+    }
+    public void StarUnSelected() {
+        UserZoom.Instance.StarZoomOut(this);
+        StartCoroutine(HeaderFade(_origHeaderAlpha));
+        StartCoroutine(PanelFade(0.0f));
+        StartCoroutine(ButtonFade(0.0f));
     }
     void Start()
     {
