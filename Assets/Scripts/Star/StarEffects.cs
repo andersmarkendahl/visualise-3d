@@ -5,7 +5,7 @@ using UnityEngine;
 public class StarEffects : MonoBehaviour
 {
     private Vector3 _positionNorm;
-    private Vector3 _rotationAxis = Vector3.up;
+    private Vector3 _rotationAxis;
     private float _rotationSpeed = 10.0f;
     private Renderer _renderer;
     private Color _color;
@@ -16,6 +16,7 @@ public class StarEffects : MonoBehaviour
         _positionNorm = transform.position.normalized;
         _color = new Color(_positionNorm.x, _positionNorm.y, _positionNorm.z, 1f);
         _ps = GetComponentInChildren<ParticleSystem>();
+        _rotationAxis = new Vector3(Random.value,Random.value, Random.value).normalized;
 
     }
     void Start()
