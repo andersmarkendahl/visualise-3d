@@ -20,6 +20,7 @@ public class StarInfoManager : MonoBehaviour
     private float _origHeaderAlpha;
     private DataPoint _dpoint;
     private int _id;
+    private Image _closeImage;
 
     private IEnumerator PanelFade(float targetAlpha)
     {
@@ -27,22 +28,29 @@ public class StarInfoManager : MonoBehaviour
         var startABackground = PanelBackground.color.a;
         var startAPanelName = PanelName.color.a;
         var startAPanelText = PanelText.color.a;
+        var startACloseImage = _closeImage.color.a;
+        float alpha1, alpha2, alpha3, alpha4;
 
         // Gradually Fade Panel
         while (elapsedTime < PanelFadeTime)
         {
-            float alpha1 = Mathf.Lerp(startABackground, targetAlpha, (elapsedTime / PanelFadeTime));
-            float alpha2 = Mathf.Lerp(startAPanelName, targetAlpha, (elapsedTime / PanelFadeTime));
-            float alpha3 = Mathf.Lerp(startAPanelText, targetAlpha, (elapsedTime / PanelFadeTime));
+            alpha1 = Mathf.Lerp(startABackground, targetAlpha, (elapsedTime / PanelFadeTime));
+            alpha2 = Mathf.Lerp(startAPanelName, targetAlpha, (elapsedTime / PanelFadeTime));
+            alpha3 = Mathf.Lerp(startAPanelText, targetAlpha, (elapsedTime / PanelFadeTime));
+            alpha4 = Mathf.Lerp(startACloseImage, targetAlpha, (elapsedTime / PanelFadeTime));
             PanelBackground.color = new Color(PanelBackground.color.r, PanelBackground.color.g, PanelBackground.color.b, alpha1);
             PanelName.color = new Color(PanelName.color.r, PanelName.color.g, PanelName.color.b, alpha2);
             PanelText.color = new Color(PanelText.color.r, PanelText.color.g, PanelText.color.b, alpha3);
+            _closeImage.color = new Color(_closeImage.color.r, _closeImage.color.g, _closeImage.color.b, alpha4);
+
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         PanelBackground.color = new Color(PanelBackground.color.r, PanelBackground.color.g, PanelBackground.color.b, targetAlpha);
         PanelName.color = new Color(PanelName.color.r, PanelName.color.g, PanelName.color.b, targetAlpha);
         PanelText.color = new Color(PanelText.color.r, PanelText.color.g, PanelText.color.b, targetAlpha);
+        _closeImage.color = new Color(_closeImage.color.r, _closeImage.color.g, _closeImage.color.b, targetAlpha);
+
     }
     private IEnumerator HeaderFade(float targetAlpha)
     {
@@ -59,22 +67,6 @@ public class StarInfoManager : MonoBehaviour
         }
         Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, targetAlpha);
     }
-    private IEnumerator ButtonFade(float targetAlpha)
-    {
-        Image CloseImage = CloseButton.image;
-        var elapsedTime = 0.0f;
-        var startA = CloseImage.color.a;
-
-        // Gradually Fade Labels
-        while (elapsedTime < PanelFadeTime)
-        {
-            float alpha = Mathf.Lerp(startA, targetAlpha, (elapsedTime / PanelFadeTime));
-            CloseImage.color = new Color(CloseImage.color.r, CloseImage.color.g, CloseImage.color.b, alpha);
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        CloseImage.color = new Color(CloseImage.color.r, CloseImage.color.g, CloseImage.color.b, targetAlpha);
-    }
     public void StarSelected() {
         if (_selected)
             return;
@@ -82,14 +74,12 @@ public class StarInfoManager : MonoBehaviour
         UserZoom.Instance.StarZoomIn(this);
         StartCoroutine(HeaderFade(0.0f));
         StartCoroutine(PanelFade(1.0f));
-        StartCoroutine(ButtonFade(1.0f));
         _selected = true;
     }
     public void StarUnSelected() {
         UserZoom.Instance.StarZoomOut(this);
         StartCoroutine(HeaderFade(_origHeaderAlpha));
         StartCoroutine(PanelFade(0.0f));
-        StartCoroutine(ButtonFade(0.0f));
         _selected = false;
     }
     void Start()
@@ -106,5 +96,6 @@ public class StarInfoManager : MonoBehaviour
     void Awake()
     {
         _origHeaderAlpha = Header.color.a;
+        _closeImage = CloseButton.image;
     }
 }
