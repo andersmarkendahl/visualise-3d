@@ -1,6 +1,6 @@
 # Visualise 3D
 
-A generic tool for displaying data points in the space of a cube 10x10x10.
+A generic tool for displaying data points in space!
 
 This can be used for representing entities on a 3 dimensional ranking from 0 to 10.
 
