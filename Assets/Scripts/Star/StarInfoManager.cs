@@ -22,26 +22,19 @@ public class StarInfoManager : MonoBehaviour
     private int _id;
     private Image _closeImage;
 
-    private IEnumerator PanelFade(float targetAlpha)
+    private IEnumerator PanelFade(float startAlpha, float targetAlpha)
     {
         var elapsedTime = 0.0f;
-        var startABackground = PanelBackground.color.a;
-        var startAPanelName = PanelName.color.a;
-        var startAPanelText = PanelText.color.a;
-        var startACloseImage = _closeImage.color.a;
-        float alpha1, alpha2, alpha3, alpha4;
+        float alpha;
 
         // Gradually Fade Panel
         while (elapsedTime < PanelFadeTime)
         {
-            alpha1 = Mathf.Lerp(startABackground, targetAlpha, (elapsedTime / PanelFadeTime));
-            alpha2 = Mathf.Lerp(startAPanelName, targetAlpha, (elapsedTime / PanelFadeTime));
-            alpha3 = Mathf.Lerp(startAPanelText, targetAlpha, (elapsedTime / PanelFadeTime));
-            alpha4 = Mathf.Lerp(startACloseImage, targetAlpha, (elapsedTime / PanelFadeTime));
-            PanelBackground.color = new Color(PanelBackground.color.r, PanelBackground.color.g, PanelBackground.color.b, alpha1);
-            PanelName.color = new Color(PanelName.color.r, PanelName.color.g, PanelName.color.b, alpha2);
-            PanelText.color = new Color(PanelText.color.r, PanelText.color.g, PanelText.color.b, alpha3);
-            _closeImage.color = new Color(_closeImage.color.r, _closeImage.color.g, _closeImage.color.b, alpha4);
+            alpha = Mathf.Lerp(startAlpha, targetAlpha, (elapsedTime / PanelFadeTime));
+            PanelBackground.color = new Color(PanelBackground.color.r, PanelBackground.color.g, PanelBackground.color.b, alpha);
+            PanelName.color = new Color(PanelName.color.r, PanelName.color.g, PanelName.color.b, alpha);
+            PanelText.color = new Color(PanelText.color.r, PanelText.color.g, PanelText.color.b, alpha);
+            _closeImage.color = new Color(_closeImage.color.r, _closeImage.color.g, _closeImage.color.b, alpha);
 
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
@@ -73,13 +66,13 @@ public class StarInfoManager : MonoBehaviour
 
         UserZoom.Instance.StarZoomIn(this);
         StartCoroutine(HeaderFade(0.0f));
-        StartCoroutine(PanelFade(1.0f));
+        StartCoroutine(PanelFade(0.0f, 1.0f));
         _selected = true;
     }
     public void StarUnSelected() {
         UserZoom.Instance.StarZoomOut(this);
         StartCoroutine(HeaderFade(_origHeaderAlpha));
-        StartCoroutine(PanelFade(0.0f));
+        StartCoroutine(PanelFade(1.0f, 0.0f));
         _selected = false;
     }
     void Start()
