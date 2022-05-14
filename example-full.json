@@ -1,0 +1,76 @@
+{
+  "DataPoints": [
+    {
+      "Coordinate": {
+        "x": 1,
+        "y": 4,
+        "z": 0
+      },
+      "Meta": {
+        "Header": "I have a description",
+        "Description": "600 Characters Maximum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Nulla at volutpat diam ut venenatis tellus in metus. Amet aliquam id diam maecenas ultricies. Et malesuada fames ac turpis. Aliquet risus feugiat in ante metus dictum at tempor. Maecenas volutpat blandit aliquam etiam erat velit scelerisque. Facilisis volutpat est velit egestas dui id ornare arcu odio. Erat imperdiet sed euismod nisi. Pulvinar sapien et ligula ullamcorper malesuada. Malesu"
+      }
+    },
+    {
+      "Coordinate": {
+        "x": 10,
+        "y": 0,
+        "z": 0
+      },
+      "Meta": {
+        "Header": "30 Characters Maximum Header."
+      }
+    },
+    {
+      "Coordinate": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+      },
+      "Meta": {
+        "Header": "I have max X, Y and Z"
+      }
+    },
+    {
+      "Coordinate": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "Meta": {
+        "Header": "I have min X, Y and Z"
+      }
+    },
+    {
+      "Coordinate": {
+        "x": 0,
+        "y": 10,
+        "z": 0
+      },
+      "Meta": {
+        "Header": "I have max Y"
+      }
+    },
+    {
+      "Coordinate": {
+        "x": 0,
+        "y": 0,
+        "z": 10
+      },
+      "Meta": {
+        "Header": "I have max Z"
+      }
+    }
+  ],
+  "Meta": {
+    "XLabelStart": "Not Much X",
+    "XLabelEnd": "Much X",
+    "XDescription": "Value of X",
+    "YLabelStart": "Not Much Y",
+    "YLabelEnd": "Much Y",
+    "YDescription": "Value of Y",
+    "ZLabelStart": "Not Much Z",
+    "ZLabelEnd": "Much Z",
+    "ZDescription": "Value of Z"
+  }
+}
