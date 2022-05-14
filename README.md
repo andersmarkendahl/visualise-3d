@@ -20,7 +20,7 @@ Rules of configuration:
 - Maximum 600 characters for `Meta.Description` 
 - `DataPoints` is array (arbitrary number of members)
 
-example-small.json:
+`example-small.json`:
 ```json
 {
   "DataPoints": [
@@ -59,7 +59,7 @@ example-small.json:
   }
 }
 ```
-Please see example-full.json for more data points.
+Please see `example-full.json` for an example with more data points.
 
 ## Known issues
 
