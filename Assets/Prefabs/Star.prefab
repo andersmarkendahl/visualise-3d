@@ -522,8 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9427d17ea5a2d07eeb6748f0b4a0d69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeaderFadeTime: 2
-  PanelFadeTime: 2
+  FadeTime: 2
   Header: {fileID: 4575451491238150248}
   PanelBackground: {fileID: 6294017503092977769}
   PanelName: {fileID: 6984003331055369203}
@@ -5845,4 +5844,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e712f7525df71ef87cc9742d2ca53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  Cam: {fileID: 0}

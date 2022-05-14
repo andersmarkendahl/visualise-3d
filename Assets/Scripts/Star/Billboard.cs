@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Billboard : MonoBehaviour {
-    public Transform cam;
+    public Transform Cam;
     private void Start() {
-        cam = Camera.main.transform;
+        Cam = Camera.main.transform;
     }
     void Update() {
-        transform.LookAt(transform.position + cam.forward);
+        transform.LookAt(transform.position + Cam.forward);
     }
 }

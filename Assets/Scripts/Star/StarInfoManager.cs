@@ -10,7 +10,7 @@ public class StarInfoManager : MonoBehaviour
 
     public DataPoint Dpoint { get => _dpoint; set => _dpoint = value; }
     public int Id { get => _id; set => _id = value; }
-    public float HeaderFadeTime, PanelFadeTime;
+    public float FadeTime;
     public TMP_Text Header;
     public Image PanelBackground;
     public TMP_Text PanelName, PanelText;
@@ -28,9 +28,9 @@ public class StarInfoManager : MonoBehaviour
         float alpha;
 
         // Gradually Fade Panel
-        while (elapsedTime < PanelFadeTime)
+        while (elapsedTime < FadeTime)
         {
-            alpha = Mathf.Lerp(startAlpha, targetAlpha, (elapsedTime / PanelFadeTime));
+            alpha = Mathf.Lerp(startAlpha, targetAlpha, (elapsedTime / FadeTime));
             PanelBackground.color = new Color(PanelBackground.color.r, PanelBackground.color.g, PanelBackground.color.b, alpha);
             PanelName.color = new Color(PanelName.color.r, PanelName.color.g, PanelName.color.b, alpha);
             PanelText.color = new Color(PanelText.color.r, PanelText.color.g, PanelText.color.b, alpha);
@@ -51,9 +51,9 @@ public class StarInfoManager : MonoBehaviour
         var startA = Header.color.a;
 
         // Gradually Fade Labels
-        while (elapsedTime < HeaderFadeTime)
+        while (elapsedTime < FadeTime)
         {
-            float alpha = Mathf.Lerp(startA, targetAlpha, (elapsedTime / HeaderFadeTime));
+            float alpha = Mathf.Lerp(startA, targetAlpha, (elapsedTime / FadeTime));
             Header.color = new Color(Header.color.r, Header.color.g, Header.color.b, alpha);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();

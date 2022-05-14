@@ -12,17 +12,16 @@ public class ConfigManager : MonoBehaviour
 
     private Vector3 _coordinateTranslation;
     private DataPoint[] _dataPoints;
-    private string jsonString;
 
     void Awake()
     {
         Instance = this;
+        var path = PlayerPrefs.GetString("path");
         _coordinateTranslation = -5 * Vector3.one;
-        string path = PlayerPrefs.GetString("path");
         if (File.Exists(path))
 		{
 			// Read the entire file and save its contents.
-			jsonString = File.ReadAllText(path);
+			var jsonString = File.ReadAllText(path);
 			// Deserialize the JSON data into a pattern matching the Config class.
             Conf = JsonUtility.FromJson<Config>(jsonString);
 		}
