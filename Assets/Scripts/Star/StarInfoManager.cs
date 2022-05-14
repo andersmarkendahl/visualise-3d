@@ -94,13 +94,13 @@ public class StarInfoManager : MonoBehaviour
     }
     void Start()
     {
-        Header.text = _dpoint.Local.Header;
-        PanelName.text = _dpoint.Local.Header;
+        Header.text = _dpoint.Meta.Header;
+        PanelName.text = _dpoint.Meta.Header;
         PanelText.text = 
-            ConfigManager.Instance.Conf.Global.XDescription + ": " + _dpoint.Coordinate.x.ToString() + Environment.NewLine +
-            ConfigManager.Instance.Conf.Global.YDescription + ": " + _dpoint.Coordinate.y.ToString() + Environment.NewLine +
-            ConfigManager.Instance.Conf.Global.ZDescription + ": " + _dpoint.Coordinate.z.ToString() + Environment.NewLine +
-            Environment.NewLine + _dpoint.Local.Description;
+            ConfigManager.Instance.Conf.Meta.XDescription + ": " + _dpoint.Coordinate.x.ToString() + Environment.NewLine +
+            ConfigManager.Instance.Conf.Meta.YDescription + ": " + _dpoint.Coordinate.y.ToString() + Environment.NewLine +
+            ConfigManager.Instance.Conf.Meta.ZDescription + ": " + _dpoint.Coordinate.z.ToString() + Environment.NewLine +
+            Environment.NewLine + _dpoint.Meta.Description;
 
     }
     void Awake()
