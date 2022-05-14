@@ -5,7 +5,7 @@ using UnityEngine;
 public class UserControls : MonoBehaviour
 {
     private Controls _controls;
-    private bool up = false, down = false, left = false, right = false, quit = false;
+    private bool _up = false, _down = false, _left = false, _right = false, _quit = false;
     private void OnEnable() => _controls.Player.Enable();
 	private void OnDisable() => _controls.Player.Disable();
     void Awake()
@@ -13,31 +13,31 @@ public class UserControls : MonoBehaviour
         // Construct controls
         _controls = new Controls();
         // Camera Movement
-        _controls.Player.Up.performed += ctx => up = true;
-        _controls.Player.Down.performed += ctx => down = true;
-        _controls.Player.Left.performed += ctx => left = true;
-        _controls.Player.Right.performed += ctx => right = true;
+        _controls.Player.Up.performed += ctx => _up = true;
+        _controls.Player.Down.performed += ctx => _down = true;
+        _controls.Player.Left.performed += ctx => _left = true;
+        _controls.Player.Right.performed += ctx => _right = true;
         // Quit Pressed
-        _controls.Player.Quit.performed += ctx => quit = true;
+        _controls.Player.Quit.performed += ctx => _quit = true;
     }
     void FixedUpdate()
     {
-        if(quit)
+        if(_quit)
             SceneryManager.Instance.LoadLevel("Intro");
             
-        if(up) {
+        if(_up) {
             CameraControl.Instance.UserRotate(Control.UP);
-        } else if(down) {
+        } else if(_down) {
             CameraControl.Instance.UserRotate(Control.DOWN);
-        } else if(left) {
+        } else if(_left) {
             CameraControl.Instance.UserRotate(Control.LEFT);
-        } else if(right) {
+        } else if(_right) {
             CameraControl.Instance.UserRotate(Control.RIGHT);
         }
 
-        up = false;
-        down = false;
-        left = false;
-        right = false;
+        _up = false;
+        _down = false;
+        _left = false;
+        _right = false;
     }
 }

@@ -39,9 +39,9 @@ public class CameraControl : MonoBehaviour
         var elapsedTime = 0.0f;
         
         // Start position of camera   
-        Vector3 startCoordinates = transform.position;
+        var startCoordinates = transform.position;
         // Destination is original camera position
-        Vector3 destCoordinates = _cameraPositions[_currentIndex].Coordinate;
+        var destCoordinates = _cameraPositions[_currentIndex].Coordinate;
 
         // Gradually move camera and rotation
         while (elapsedTime < MoveTime)
@@ -60,10 +60,10 @@ public class CameraControl : MonoBehaviour
         var elapsedTime = 0.0f;
 
         // Collect position and rotation data   
-        Vector3 startCoordinates = _cameraPositions[_currentIndex].Coordinate;
-        Vector3 startRotation = _cameraPositions[_currentIndex].Rotation;
-        Vector3 destCoordinates = _cameraPositions[newIndex].Coordinate;
-        Vector3 destRotation = _cameraPositions[newIndex].Rotation;
+        var startCoordinates = _cameraPositions[_currentIndex].Coordinate;
+        var startRotation = _cameraPositions[_currentIndex].Rotation;
+        var destCoordinates = _cameraPositions[newIndex].Coordinate;
+        var destRotation = _cameraPositions[newIndex].Rotation;
 
         // Block new user input
         _moveBlock = true;
@@ -151,5 +151,4 @@ public class CameraControl : MonoBehaviour
         // Switch to default starting position
         RotateCamera(_currentIndex);
     }
-
 }

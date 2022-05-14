@@ -14,7 +14,6 @@ public class ConfigManager : MonoBehaviour
     private DataPoint[] _dataPoints;
     private string jsonString;
 
-
     void Awake()
     {
         Instance = this;
@@ -42,6 +41,5 @@ public class ConfigManager : MonoBehaviour
             s.GetComponent<StarInfoManager>().Id = id;
             id++;
         }
-
     }
 }
