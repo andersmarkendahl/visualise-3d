@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class StarEffects : MonoBehaviour
 {
-    private Vector3 _positionNorm;
     private Vector3 _rotationAxis;
     private float _rotationSpeed = 10.0f;
-    private Renderer _renderer;
-    private Color _color;
-    private ParticleSystem _ps;
+    private float _scale = 10.0f;
     void Awake()
     {
-        _renderer = GetComponent<Renderer>();
-        _positionNorm = transform.position.normalized;
-        _color = new Color(_positionNorm.x, _positionNorm.y, _positionNorm.z, 1f);
-        _ps = GetComponentInChildren<ParticleSystem>();
         _rotationAxis = new Vector3(Random.value,Random.value, Random.value).normalized;
-
     }
     void Start()
-    {         
-        var main = _ps.main;
-        main.startColor = _color;
-        _renderer.material.color = _color;
+    {
+        var renderer = GetComponent<Renderer>();
+        var ps = GetComponentInChildren<ParticleSystem>();
+        var positionTranslated = transform.position - ConfigManager.Instance.CoordinateTranslation;
+        var particles = ps.main;
+        var color = new Color(positionTranslated.x/_scale, positionTranslated.y/_scale, positionTranslated.z/_scale, 1f);
+        particles.startColor = color;
+        renderer.material.color = color;
     }
     void Update()
     {
