@@ -4,13 +4,16 @@ using UnityEngine;
 public class MetaLocal
 {
     public string Header;
-    public MetaLocal(string header)
+    public string Description;
+    public MetaLocal(string header, string description)
     {
         Header = header;
+        Description = description;
     }
     public override string ToString()
 	{
 		return
-			" Header=" + Header;
+			" Header=" + Header +
+            " Description=" + Description;
 	}
 }

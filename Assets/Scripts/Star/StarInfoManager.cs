@@ -99,7 +99,8 @@ public class StarInfoManager : MonoBehaviour
         PanelText.text = 
             ConfigManager.Instance.Conf.Global.XDescription + ": " + _dpoint.Coordinate.x.ToString() + Environment.NewLine +
             ConfigManager.Instance.Conf.Global.YDescription + ": " + _dpoint.Coordinate.y.ToString() + Environment.NewLine +
-            ConfigManager.Instance.Conf.Global.ZDescription + ": " + _dpoint.Coordinate.z.ToString();
+            ConfigManager.Instance.Conf.Global.ZDescription + ": " + _dpoint.Coordinate.z.ToString() + Environment.NewLine +
+            Environment.NewLine + _dpoint.Local.Description;
 
     }
     void Awake()
