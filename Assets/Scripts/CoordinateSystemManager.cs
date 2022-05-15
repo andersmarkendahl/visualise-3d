@@ -127,8 +127,9 @@ public class CoordinateSystemManager : MonoBehaviour
         _rightText = RightLabel.GetComponent<TMP_Text>();
         // Store original alpha of labels
         _origLabelAlpha = _upText.color.a;
-
+        // Store all Sprite Renderers
         _axisSpriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        // Store original alpha of axes
         _origAxisAlpha = _axisSpriteRenderers[0].color.a;
     }
 }

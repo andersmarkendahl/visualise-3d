@@ -87,7 +87,9 @@ public class CameraControl : MonoBehaviour
     
     private void RotateCamera(int newIndex)
     {
+        // Move Camera to new position
         StartCoroutine(CameraMove(newIndex));
+        // Update labels to fit new position
         CoordinateSystemManager.Instance.UpdateLabels(newIndex);
     }
     public void UserZoomIn(Vector3 destCoordinates)
@@ -95,14 +97,20 @@ public class CameraControl : MonoBehaviour
         if (_moveBlock)
             return;
 
+        // ZoomIn to coordinate with translation
         StartCoroutine(CameraZoomIn(destCoordinates - 5 * Vector3.one));
+        // FadeOut Labels
         CoordinateSystemManager.Instance.FadeOutLabels();
+        // FadeOut Axes
         CoordinateSystemManager.Instance.FadeOutAxis();
     }
     public void UserZoomOut()
     {
+        // Zoom out to original camera position
         StartCoroutine(CameraZoomOut());
+        // Fade in labels
         CoordinateSystemManager.Instance.FadeInLabels();
+        // Fade in axes
         CoordinateSystemManager.Instance.FadeInAxis();
     }
 
@@ -111,6 +119,7 @@ public class CameraControl : MonoBehaviour
         if (_moveBlock)
             return;
 
+        // Map user input to camera position
         switch (_currentIndex)
         {
         case 0:
@@ -139,6 +148,7 @@ public class CameraControl : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        // Define the three camera positions
         _cameraPositions = new CameraPosition[]
         {
             new CameraPosition(new Vector3(0.0f, 0.0f, -Scale), new Vector3(0.0f, 0.0f, 0.0f)),
