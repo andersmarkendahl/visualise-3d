@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEditor;
 using SimpleFileBrowser;
@@ -19,8 +20,22 @@ public class UIManager : MonoBehaviour
         yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.Files, false, null, null, "Load JSON Configuration", "Load" );
         if(FileBrowser.Success)
         {
-            PlayerPrefs.SetString("path",FileBrowser.Result[0]);
-            SceneryManager.Instance.LoadLevel("Run");
+            // Validate configuration
+            var path = FileBrowser.Result[0];
+            // Read the entire file and save its contents.
+            var jsonString = File.ReadAllText(path);
+            // Deserialize the JSON data into a pattern matching the Config class.
+            Config conf = JsonUtility.FromJson<Config>(jsonString);
+
+            if(Validation.Validate(conf))
+            {
+                PlayerPrefs.SetString("path", path);
+                SceneryManager.Instance.LoadLevel("Run");
+            }
+            else
+            {
+                Debug.LogError("Failed to validate file");
+            }
         }
         else
         {
