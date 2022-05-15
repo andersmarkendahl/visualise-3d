@@ -47,7 +47,7 @@ jobs:
         with:
           buildName: visualise-3d 
           targetPlatform: ${{ matrix.targetPlatform }}
-          versioning: Semantic
+          versioning: Tag
       # Create Archive
       - name: Create Archive ${{ matrix.targetPlatform }}
         env:
