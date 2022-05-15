@@ -64,7 +64,7 @@ Please see `example-full.json` for an example with more data points.
 ## Known issues
 
 1. Data points with same coordinate will block each other (Grouping needed)
-2. JSON Validation schema pending
+2. JSON Validation schema needed (in-game and in repo)
 
 ## Developers
 
