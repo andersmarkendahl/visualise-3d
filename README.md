@@ -14,7 +14,7 @@ Load a json configuration according to the structure shown below.
 
 Rules of configuration:
 
-- Coordinates must be within a 10x10x10 cube ([0-10],[0-10],[0-10])
+- Coordinates must be within a 10x10x10 cube, coordinates range: ([0-10],[0-10],[0-10])
 - All fields are mandatory except `Meta.Description`
 - Maximum 30 characters for `Meta.Header`
 - Maximum 600 characters for `Meta.Description` 
