@@ -4,7 +4,7 @@ A generic tool for displaying data points in space!
 
 This can be used for representing entities on a 3 dimensional ranking from 0 to 10.
 
-Data points are given a RBG color based on coordinate.
+Data points are mapped to RBG color based on coordinate.
 
 Coordinate system axes are translated to (5,5,5) because it looks kewl.
 
