@@ -148,7 +148,7 @@ public class Validation
         bool verdict = true; 
         if(string.IsNullOrWhiteSpace(metaLocal.Header))
         {
-            Debug.LogError("Header Empty or Undefined");
+            Debug.LogError("DataPoints[?].Meta.Header Empty or Undefined");
             verdict = false;
         }
         
