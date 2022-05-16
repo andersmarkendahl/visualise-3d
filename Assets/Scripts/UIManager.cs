@@ -4,9 +4,10 @@ using System.IO;
 using UnityEngine;
 using UnityEditor;
 using SimpleFileBrowser;
-
+using TMPro;
 public class UIManager : MonoBehaviour
 {
+    public TMP_Text ErrorMessage;
     public void LoadFile()
     {
         StartCoroutine(ShowLoadDialogCoroutine());
@@ -34,7 +35,10 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Failed to validate file");
+                Debug.LogError("Failed to validate file: " + path);
+                ErrorMessage.text =
+                    "WARNING: Validation failed for file " + path +
+                    "\nPlease see " + "REPLACELOGS" + " for errors";
             }
         }
         else
