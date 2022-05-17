@@ -67,7 +67,7 @@ Please see `example-full.json` for an example with more data points.
 
 - Download latest release package for your platform.
 - Unpack into desired directory
-- Run visualise-3d binary
+- Run `visualise-3d` binary
 
 ### Intro scene
 
