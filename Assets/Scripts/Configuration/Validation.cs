@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Validation
 {
+    private static void Log(string message)
+    {
+        Debug.LogError("<color=red>Validation error: " + message + "</color>");
+    }
     public static bool Validate(Config conf)
     {
         if (conf == null)
@@ -20,7 +24,7 @@ public class Validation
     {
         if (dataPoints == null)
         {
-            Debug.LogError("DataPoints[] undefined");
+            Log("DataPoints[] undefined");
             return false;
         }
 
@@ -30,7 +34,7 @@ public class Validation
         {
             if(!ValidateDataPoint(dp))
             {
-                Debug.LogError("DataPoints[" + i + "] failed to validate");
+                Log("DataPoints[" + i + "] failed to validate");
                 verdict = false;
             }
             i++;
@@ -41,54 +45,54 @@ public class Validation
     {
         if (metaGlobal == null)
         {
-            Debug.LogError("Meta undefined");
+            Log("Meta undefined");
             return false;
         }
 
         bool verdict = true; 
         if(string.IsNullOrWhiteSpace(metaGlobal.XLabelStart))
         {
-            Debug.LogError("Meta.XLabelStart empty or undefined");
+            Log("Meta.XLabelStart empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.XLabelEnd))
         {
-            Debug.LogError("Meta.XLabelEnd empty or undefined");
+            Log("Meta.XLabelEnd empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.XDescription))
         {
-            Debug.LogError("Meta.XDescription empty or undefined");
+            Log("Meta.XDescription empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.YLabelStart))
         {
-            Debug.LogError("Meta.YLabelStart empty or undefined");
+            Log("Meta.YLabelStart empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.YLabelEnd))
         {
-            Debug.LogError("Meta.YLabelEnd empty or undefined");
+            Log("Meta.YLabelEnd empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.YDescription))
         {
-            Debug.LogError("Meta.YDescription empty or undefined");
+            Log("Meta.YDescription empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.ZLabelStart))
         {
-            Debug.LogError("Meta.ZLabelStart empty or undefined");
+            Log("Meta.ZLabelStart empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.ZLabelEnd))
         {
-            Debug.LogError("Meta.ZLabelEnd empty or undefined");
+            Log("Meta.ZLabelEnd empty or undefined");
             verdict = false;
         }
         if(string.IsNullOrWhiteSpace(metaGlobal.ZDescription))
         {
-            Debug.LogError("Meta.ZDescription empty or undefined");
+            Log("Meta.ZDescription empty or undefined");
             verdict = false;
         }
 
@@ -99,7 +103,7 @@ public class Validation
     {
         if (dataPoint == null)
         {
-            Debug.LogError("DataPoint undefined");
+            Log("DataPoint undefined");
             return false;
         }
 
@@ -114,24 +118,24 @@ public class Validation
     {
         if (coordinate == null)
         {
-            Debug.LogError("Coordinate undefined");
+            Log("Coordinate undefined");
             return false;
         }
 
         bool verdict = true;
         if (coordinate.x > 10.0f || coordinate.x < 0.0f)
         {
-            Debug.LogError("Coordinate x out of range: " + coordinate.x);
+            Log("Coordinate x out of range: " + coordinate.x);
             verdict = false;
         }
         if (coordinate.y > 10.0f || coordinate.y < 0.0f)
         {
-            Debug.LogError("Coordinate y out of range: " + coordinate.y);
+            Log("Coordinate y out of range: " + coordinate.y);
             verdict = false;
         }
         if (coordinate.z > 10.0f || coordinate.z < 0.0f)
         {
-            Debug.LogError("Coordinate z out of range: " + coordinate.z);
+            Log("Coordinate z out of range: " + coordinate.z);
             verdict = false;
         }
 
@@ -141,14 +145,14 @@ public class Validation
     {
         if (metaLocal == null)
         {
-            Debug.LogError("DataPoints[?].Meta undefined");
+            Log("DataPoints[?].Meta undefined");
             return false;
         }
 
         bool verdict = true; 
         if(string.IsNullOrWhiteSpace(metaLocal.Header))
         {
-            Debug.LogError("DataPoints[?].Meta.Header Empty or Undefined");
+            Log("DataPoints[?].Meta.Header Empty or Undefined");
             verdict = false;
         }
         
