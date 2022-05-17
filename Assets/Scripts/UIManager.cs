@@ -16,30 +16,54 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
+    private string PlayerLog()
+    {
+        string playerLog;
+
+#if UNITY_STANDALONE_LINUX
+        playerLog = "~/.config/unity3d/" + Application.companyName + "/" + Application.productName +  "/Player.log";
+#endif
+#if UNITY_STANDALONE_OSX
+        playerLog = "~/Library/Logs/" + Application.companyName + "/" + Application.productName + "/Player.log";
+#endif
+
+        return playerLog;
+    }
+    private void ValidateConf(string path)
+    {
+        var divider = "==========================================================";
+        // Read the entire file and save its contents.
+        var jsonString = File.ReadAllText(path);
+        // Deserialize the JSON data into a pattern matching the Config class.
+        Config conf = JsonUtility.FromJson<Config>(jsonString);
+
+        Debug.LogError(divider);
+        Debug.LogError("===== Starting validation of " + path + " =====");
+        if(Validation.Validate(conf))
+        {
+            PlayerPrefs.SetString("path", path);
+            SceneryManager.Instance.LoadLevel("Run");
+            Debug.LogError("===== Validation of " + path + " PASSED =====");
+            Debug.LogError(divider);
+        }
+        else
+        {
+            var playerLog = PlayerLog();
+            Debug.LogError("===== Validation of " + path + " FAILED =====");
+            Debug.LogError(divider);
+            ErrorMessage.text =
+                "WARNING: Validation failed for file " + path +
+                "\nPlease see end of " + playerLog + " for errors";
+        }
+    }
     IEnumerator ShowLoadDialogCoroutine()
     {
         yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.Files, false, null, null, "Load JSON Configuration", "Load" );
         if(FileBrowser.Success)
         {
-            // Validate configuration
+            // Validate configuration and run if ok
             var path = FileBrowser.Result[0];
-            // Read the entire file and save its contents.
-            var jsonString = File.ReadAllText(path);
-            // Deserialize the JSON data into a pattern matching the Config class.
-            Config conf = JsonUtility.FromJson<Config>(jsonString);
-
-            if(Validation.Validate(conf))
-            {
-                PlayerPrefs.SetString("path", path);
-                SceneryManager.Instance.LoadLevel("Run");
-            }
-            else
-            {
-                Debug.LogError("Failed to validate file: " + path);
-                ErrorMessage.text =
-                    "WARNING: Validation failed for file " + path +
-                    "\nPlease see " + "REPLACELOGS" + " for errors";
-            }
+            ValidateConf(path );
         }
         else
         {
