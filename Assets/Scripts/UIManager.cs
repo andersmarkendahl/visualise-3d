@@ -31,26 +31,23 @@ public class UIManager : MonoBehaviour
     }
     private void ValidateConf(string path)
     {
-        var divider = "==========================================================";
+        var highlight = "==========> ";
         // Read the entire file and save its contents.
         var jsonString = File.ReadAllText(path);
         // Deserialize the JSON data into a pattern matching the Config class.
         Config conf = JsonUtility.FromJson<Config>(jsonString);
 
-        Debug.LogError(divider);
-        Debug.LogError("===== Starting validation of " + path + " =====");
+        Debug.Log(highlight + "Starting validation of " + path);
         if(Validation.Validate(conf))
         {
             PlayerPrefs.SetString("path", path);
             SceneryManager.Instance.LoadLevel("Run");
-            Debug.LogError("===== Validation of " + path + " PASSED =====");
-            Debug.LogError(divider);
+            Debug.Log(highlight + "Validation of " + path + " PASSED");
         }
         else
         {
             var playerLog = PlayerLog();
-            Debug.LogError("===== Validation of " + path + " FAILED =====");
-            Debug.LogError(divider);
+            Debug.LogError(highlight + "Validation of " + path + " FAILED");
             ErrorMessage.text =
                 "WARNING: Validation failed for file " + path +
                 "\nPlease see end of " + playerLog + " for errors";

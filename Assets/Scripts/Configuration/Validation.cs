@@ -6,7 +6,7 @@ public class Validation
 {
     private static void Log(string message)
     {
-        Debug.LogError("<color=red>Validation error: " + message + "</color>");
+        Debug.LogError("WARN Validation error: " + message);
     }
     public static bool Validate(Config conf)
     {
