@@ -10,7 +10,9 @@ Coordinate system axes are translated to (5,5,5) because it looks kewl.
 
 ## Instructions
 
-Load a json configuration according to the structure shown below.
+### Preparation
+
+Create a json configuration according to the structure shown below.
 
 Rules of configuration:
 
@@ -55,16 +57,35 @@ Rules of configuration:
     "YDescription": "Value of Y",
     "ZLabelStart": "Not Much Z",
     "ZLabelEnd": "Much Z",
-    "ZDescription": "Value of Z"
+    "ZDescription": "Valg ue of Z"
   }
 }
 ```
 Please see `example-full.json` for an example with more data points.
 
+### Start Program
+
+- Download latest release package for your platform.
+- Unpack into desired directory
+- Run visualise-3d binary
+
+### Intro scene
+
+- Load your configuration using the `Load File` button.
+- Program will validate configuration before starting visualisation.
+- Quit program using the `Quit` button.
+
+### In-Game
+
+- Rotate camera using arrow keys
+- Click text of datapoint to zoom in.
+- User is presented with a panel with additional information.
+- Close panel to zoom out.
+- Return to intro scene by pressing `Esc`.
+
 ## Known issues
 
 1. Data points with same coordinate will block each other (Grouping needed)
-2. JSON Validation schema needed (in-game and in repo)
 
 ## Developers
 
